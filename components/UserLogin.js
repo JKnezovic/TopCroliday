@@ -10,6 +10,7 @@ import {
 import Parse from 'parse/react-native';
 import {useNavigation} from '@react-navigation/native';
 import Styles from '../Styles';
+import Button from "./Button"
 
 export const UserLogin = () => {
   const navigation = useNavigation();
@@ -18,21 +19,17 @@ export const UserLogin = () => {
   const [password, setPassword] = useState('');
 
   const doUserLogin = async function () {
-    // Note that this values come from state variables that we've declared before
     const usernameValue = username;
     const passwordValue = password;
     return await Parse.User.logIn(usernameValue, passwordValue)
       .then(async (loggedInUser) => {
-        // logIn returns the corresponding ParseUser object
-        Alert.alert(
+       /*  Alert.alert(
           'Success!',
           `User ${loggedInUser.get('username')} has successfully signed in!`,
         );
-        // To verify that this is in fact the current user, currentAsync can be used
         const currentUser = await Parse.User.currentAsync();
-        console.log(loggedInUser === currentUser);
-        // Navigation.navigate takes the user to the screen named after the one
-        // passed as parameter
+        console.log(loggedInUser === currentUser); */
+
         navigation.navigate('Main');
         return true;
       })
@@ -44,7 +41,6 @@ export const UserLogin = () => {
   };
 
   return (
-    <View style={Styles.login_wrapper}>
       <View style={Styles.form}>
         <TextInput
           style={Styles.form_input}
@@ -59,14 +55,13 @@ export const UserLogin = () => {
           value={password}
           placeholder={'Password'}
           secureTextEntry
+          autoCapitalize={'none'}
           onChangeText={(text) => setPassword(text)}
         />
-        <TouchableOpacity onPress={() => doUserLogin()}>
-          <View style={Styles.button}>
-            <Text style={Styles.button_label}>{'Sign in'}</Text>
-          </View>
-        </TouchableOpacity>
+        <Button
+            title={'Sign in'}
+            onPress={() => doUserLogin()}
+            />
       </View>
-    </View>
   );
 };

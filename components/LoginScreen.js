@@ -1,30 +1,50 @@
 import * as React from 'react';
-import { Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import {UserLogin} from './UserLogin';
 import Styles from '../Styles';
 
 const LoginScreen = () => {
   return (
-    <>
-    <StatusBar />
-    <SafeAreaView style={Styles.login_container}>
-      <View style={Styles.login_header}>
-        <Image
-          style={Styles.login_header_logo}
-          source={require('../assets/Logo.png')}
-        />
-        <Text style={Styles.login_header_text}>
-          <Text style={Styles.login_header_text_bold}>
-            {'React Native on Back4App - '}
-          </Text>
-          {' User login'}
-        </Text>
-      </View>
-      <UserLogin />
-    </SafeAreaView>
-  </>
+    <View style={styles.container}>
+        <ImageBackground source={require('../assets/welcome_background.jpg')} resizeMode="cover" style={styles.image}>
+          <View>
+            <Image
+              source={require('../assets/Logo.png')} style={styles.logo}
+            />
+            <Text style={[styles.text, styles.bigText]}>Welcome</Text>
+            <Text style={[styles.text, styles.description,{marginBottom:20}]}>Enter username and password you recieved</Text>
+          </View>
+          <UserLogin />
+      </ImageBackground>
+    </View>
   );
 };
 
 export default LoginScreen;
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  logo:{
+    justifyContent:"center",
+    alignSelf:"center"
+  },
+  text: {
+    color: "white",
+    textAlign: "center",
+  },
+  description:{
+    width:"90%",
+    alignSelf:'center'
+  },
+  bigText: {
+    fontSize: 42,
+    lineHeight: 84,
+    fontWeight: 'bold'
+  }
+});
