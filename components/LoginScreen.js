@@ -3,7 +3,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import {UserLogin} from './UserLogin';
 import Styles from '../Styles';
 
-const LoginScreen = () => {
+const LoginScreen = (props) => {
   return (
     <View style={styles.container}>
         <ImageBackground source={require('../assets/welcome_background.jpg')} resizeMode="cover" style={styles.image}>
@@ -14,7 +14,7 @@ const LoginScreen = () => {
             <Text style={[styles.text, styles.bigText]}>Welcome</Text>
             <Text style={[styles.text, styles.description,{marginBottom:20}]}>Enter username and password you recieved</Text>
           </View>
-          <UserLogin />
+          <UserLogin handleAuthStatus={props.handleAuthStatus}/>
       </ImageBackground>
     </View>
   );

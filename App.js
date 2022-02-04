@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
 import Parse from "parse/react-native.js";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
@@ -16,25 +14,46 @@ Parse.serverURL = 'https://parseapi.back4app.com/';
 
 const Stack = createNativeStackNavigator();
 
-const App = () => {
+  const App = () => {
+
+    const [isSignedIn,setIsSignedIn] = React.useState(false)
+
+    const handleAuthStatus= async function(){
+      const currentUser = await Parse.User.currentAsync();
+      setIsSignedIn(currentUser?true:false)
+    }
+
+    React.useEffect(() => {
+      handleAuthStatus()
+    });
+    
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
-        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="Main" component={MainScreen} 
-              options={{ 
-                title: 'Top Croliday',
-                headerTitleAlign: 'center',
-                headerStyle: {
-                  backgroundColor:'#092240',
-                  },
-                headerTitleStyle:{
-                  color:'white'
-                }
-                }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator  initialRouteName="Welcome" >
+          {!isSignedIn?(
+            <>
+            <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name="Login" options={{ headerShown: false }}>
+            {props => <LoginScreen {...props} handleAuthStatus={handleAuthStatus} />}
+            </Stack.Screen>
+            </>
+            ):(
+            <>
+            <Stack.Screen name="Main" component={MainScreen} 
+                  options={{ 
+                    title: 'Top Croliday',
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                      backgroundColor:'#092240',
+                      },
+                    headerTitleStyle:{
+                      color:'white'
+                    }
+                    }}/>
+              </>
+            )}
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 };
 

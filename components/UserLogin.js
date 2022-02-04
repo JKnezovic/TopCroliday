@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import Styles from '../Styles';
 import Button from "./Button"
 
-export const UserLogin = () => {
+export const UserLogin = (props) => {
   const navigation = useNavigation();
 
   const [username, setUsername] = useState('');
@@ -29,8 +29,8 @@ export const UserLogin = () => {
         );
         const currentUser = await Parse.User.currentAsync();
         console.log(loggedInUser === currentUser); */
-
-        navigation.navigate('Main');
+        props.handleAuthStatus();
+        //navigation.navigate('Main');
         return true;
       })
       .catch((error) => {

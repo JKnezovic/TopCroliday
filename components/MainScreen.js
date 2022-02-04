@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, BackHandler, Alert } from 'react-native';
 import MainScreenTile from './MainScreenTiles';
+import Parse from "parse/react-native.js";
+
 const data = {
   pre: {
     uri:require('../assets/pre.jpg'),
@@ -20,6 +22,40 @@ const data = {
 }
 
 const MainScreen = () => {
+  React.useEffect(() => {
+    const backAction = () => {
+      Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        {
+          text: "Cancel",
+          onPress: () => null,
+          style: "cancel"
+        },
+        { text: "YES", onPress: () => doUserLogOut() }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    const doUserLogOut = async function () {
+      return await Parse.User.logOut()
+        .then(async () => {
+          const currentUser = await Parse.User.currentAsync();
+          if (currentUser === null) {
+            BackHandler.exitApp()
+          }
+        })
+        .catch((error) => {
+          Alert.alert('Error!', error.message);
+          return false;
+        });
+    };
+
+    return () => backHandler.remove();
+  }, []);
   return (
       <View style={styles.container}>
         <MainScreenTile imageUri={data.pre.uri} title={data.pre.title} desc={data.pre.desc}></MainScreenTile>
