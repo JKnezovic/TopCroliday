@@ -6,9 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from "./components/LoginScreen";
 import WelcomeScreen from "./components/WelcomeScreen";
 import MainScreen from "./components/MainScreen"
+import PreStay from "./components/PreStay/PreStay"
+import DuringStay from "./components/DuringStay/DuringStay"
+import PostStay from "./components/PostStay/PostStay"
+
 
 Parse.setAsyncStorage(AsyncStorage);
-//You need to copy BOTH the the Application ID and the Javascript Key from: Dashboard->App Settings->Security & Keys 
 Parse.initialize('F4H5ofBLuLAIxCkwAE2E2oS2Hn1b5kppANz13hd0','tZrBhwOCMFkTbg1WJcWzgjVgoJ38sK5Xb0QjpywB');
 Parse.serverURL = 'https://parseapi.back4app.com/';
 
@@ -50,8 +53,13 @@ const Stack = createNativeStackNavigator();
                       color:'white'
                     }
                     }}/>
+            <Stack.Screen name="PreStay" component={PreStay}/>
+            <Stack.Screen name="DuringStay" component={DuringStay}/>
+            <Stack.Screen name="PostStay" component={PostStay}/>
               </>
+
             )}
+            
         </Stack.Navigator>
       </NavigationContainer>
   );

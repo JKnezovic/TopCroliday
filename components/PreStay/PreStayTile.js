@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { ImageBackground, Pressable, StyleSheet, Text } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native';
 
-
-const MainScreenTile = (props) => {
-  const navigation = useNavigation();
+const PreStayTile = (props) => {
   return (
-      <Pressable style={styles.container} onPress={() => navigation.navigate(props.title)}>
-          <ImageBackground source={props.imageUri} resizeMode="cover" style={styles.image}>
-              <LinearGradient 
+      <View style={styles.container}>
+          <LinearGradient 
               style={styles.textBox}
               colors={['transparent','rgba(0,0,0,0.6)']}>
                 <Text style={styles.textBig}>
@@ -19,12 +15,11 @@ const MainScreenTile = (props) => {
                 </Text>
                 <Text style={styles.desc}>{props.desc}</Text>
               </LinearGradient>
-          </ImageBackground>
-      </Pressable>
+      </View>
   );
 };
 
-export default MainScreenTile;
+export default PreStayTile;
 
 const styles = StyleSheet.create({
   container: {
