@@ -1,21 +1,22 @@
 import * as React from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const PreStayTile = (props) => {
   return (
-      <View style={styles.container}>
-          <LinearGradient 
-              style={styles.textBox}
-              colors={['transparent','rgba(0,0,0,0.6)']}>
-                <Text style={styles.textBig}>
-                  {props.title} 
-                  <AntDesign name="right" size={30} color="white" />
-                </Text>
-                <Text style={styles.desc}>{props.desc}</Text>
-              </LinearGradient>
-      </View>
+      <Pressable style={styles.container} >
+        <View style={{backgroundColor:props.color,
+                      height:'100%',
+                      width:'30%',
+                      borderRadius:25,
+                      alignItems:'center',
+                      justifyContent:'center',}}>
+         <Ionicons style={styles.iconBIg} name={props.icon} size={60} color="black" />
+        </View>
+          <Text style={{fontSize:24,color:'#092240'}}>{props.name}</Text>
+          <AntDesign name="right" size={40} color="#092240" />
+      </Pressable>
   );
 };
 
@@ -23,34 +24,31 @@ export default PreStayTile;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height:'16%',
+    flexDirection: 'row',
     width:'95%',
-    paddingVertical: 6,
-    marginBottom: 6,
+    //paddingVertical: 6,
+    marginTop: 6,
+    justifyContent:'space-between',
+    borderRadius:25,
+    backgroundColor:'white',
+    alignItems:'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 2,
   },
-  image: {
-    flex: 1,
-    borderRadius:15,
-    overflow:'hidden'
+  iconBIg:{
+    color:'white',
+   
   },
-  textBox:{
-    position:'absolute',
-    right:0,
-    bottom:0,
-    width:'100%'
+  wrapper:{
+    height:'100%',
+    width:'30%',
+    borderRadius:25,
+    alignItems:'center',
+    justifyContent:'center',
 
-  },
-  textBig:{
-    fontSize: 42,    
-    color:'white',
-    textAlign:'right',
-    paddingRight:'2%'
-  },
-  desc:{
-    fontSize:12,    
-    color:'white',
-    paddingLeft:'2%',
-    paddingBottom:'2%'
   }
-
-});
+})

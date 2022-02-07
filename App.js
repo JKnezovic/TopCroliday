@@ -15,6 +15,17 @@ Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize('F4H5ofBLuLAIxCkwAE2E2oS2Hn1b5kppANz13hd0','tZrBhwOCMFkTbg1WJcWzgjVgoJ38sK5Xb0QjpywB');
 Parse.serverURL = 'https://parseapi.back4app.com/';
 
+const style={
+  headerTitleAlign: 'center',
+  headerStyle: {
+    backgroundColor:'#092240',
+    },
+  headerTitleStyle:{
+    color:'white'
+  },
+  headerTintColor: 'white',
+  }
+
 const Stack = createNativeStackNavigator();
 
   const App = () => {
@@ -53,7 +64,7 @@ const Stack = createNativeStackNavigator();
                       color:'white'
                     }
                     }}/>
-            <Stack.Screen name="PreStay" component={PreStay}/>
+            <Stack.Screen name="PreStay" component={PreStay} options={style}/>
             <Stack.Screen name="DuringStay" component={DuringStay}/>
             <Stack.Screen name="PostStay" component={PostStay}/>
               </>
