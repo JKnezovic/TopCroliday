@@ -3,19 +3,21 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-const PreStayTile = (props) => {
+const PreStayTile = ({item}) => {
+  const { color, icon, name } = item;
   return (
       <Pressable style={styles.container} >
-        <View style={{backgroundColor:props.color,
-                      height:'100%',
-                      width:'30%',
-                      borderRadius:25,
-                      alignItems:'center',
-                      justifyContent:'center',}}>
-         <Ionicons style={styles.iconBIg} name={props.icon} size={60} color="black" />
+        <View style={{ 
+          height:'100%',
+          width:'30%',
+          borderRadius:25,
+          alignItems:'center',
+          justifyContent:'center',
+          backgroundColor:color}}>
+         <Ionicons style={styles.iconBIg} name={icon} size={60} color="black" />
         </View>
-          <Text style={{fontSize:24,color:'#092240'}}>{props.name}</Text>
-          <AntDesign name="right" size={40} color="#092240" />
+          <Text style={{fontSize:24,color:'#092240'}}>{name}</Text>
+          <AntDesign name="right" size={30} color="#092240" />
       </Pressable>
   );
 };

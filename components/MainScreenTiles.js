@@ -5,19 +5,20 @@ import { AntDesign } from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 
 
-const MainScreenTile = (props) => {
+const MainScreenTile = ({item}) => {
+  const {desc, title, uri} = item;
   const navigation = useNavigation();
   return (
-      <Pressable style={styles.container} onPress={() => navigation.navigate(props.title)}>
-          <ImageBackground source={props.imageUri} resizeMode="cover" style={styles.image}>
+      <Pressable style={styles.container} onPress={() => navigation.navigate(title)}>
+          <ImageBackground source={uri} resizeMode="cover" style={styles.image}>
               <LinearGradient 
               style={styles.textBox}
               colors={['transparent','rgba(0,0,0,0.6)']}>
                 <Text style={styles.textBig}>
-                  {props.title} 
+                  {title} 
                   <AntDesign name="right" size={30} color="white" />
                 </Text>
-                <Text style={styles.desc}>{props.desc}</Text>
+                <Text style={styles.desc}>{desc}</Text>
               </LinearGradient>
           </ImageBackground>
       </Pressable>
