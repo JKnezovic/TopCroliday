@@ -1,21 +1,37 @@
 import * as React from 'react';
-import {  StyleSheet,View, Text, Pressable, ImageBackground } from 'react-native';
+import {  StyleSheet, Text, Pressable, ImageBackground } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const DuringStayTile = ({item,saveFavoriteList}) => {
-  const { title, uri } = item;
+const DuringStayTile = ({source,title,objectId,updateFavoriteList,favoriteList,showFavorites}) => {
   const [favorite,setFavorite] = React.useState(false);
-  const settFavorite=()=>{
+
+  const navigation = useNavigation(); 
+  
+  const changeFavorite=()=>{
+    updateFavoriteList(objectId,!favorite)
     setFavorite(!favorite)
   }
-  return (
-    <Pressable onPress={()=>saveFavoriteList()} style={styles.container}>
-        <ImageBackground source={uri} resizeMode="cover" style={styles.image}>
+
+  React.useEffect(()=>{
+    if(favoriteList.hasOwnProperty(objectId)){
+      setFavorite(favoriteList[objectId])
+    }
+  },[]);
+  if(showFavorites && !favorite){
+    return null
+  }
+  else{
+     return (
+    <Pressable onPress={() =>
+      navigation.navigate('DuringStayDetails',{objectId:objectId})
+    } style={styles.container}>
+        <ImageBackground source={source} resizeMode="cover" style={styles.image}>
               { favorite ?
-                (<AntDesign onPress={()=>settFavorite()} style={styles.icon} name="heart" size={24} color="black" />)
+                (<AntDesign onPress={()=>changeFavorite()} style={styles.icon} name="heart" size={24} color="black" />)
                 :
-                (<AntDesign onPress={()=>settFavorite()} style={styles.icon} name="hearto" size={24} color="black" />) 
+                (<AntDesign onPress={()=>changeFavorite()} style={styles.icon} name="hearto" size={24} color="black" />) 
               }
               <LinearGradient 
               style={styles.textBox}
@@ -26,7 +42,9 @@ const DuringStayTile = ({item,saveFavoriteList}) => {
               </LinearGradient>
         </ImageBackground>
     </Pressable>
-  );
+  ); 
+  }
+
 };
 
 export default DuringStayTile;
@@ -50,12 +68,9 @@ const styles = StyleSheet.create({
     alignSelf:'flex-end',
     paddingRight:'4%',
     paddingTop:'2%',
-    //color:'red'
   },
   textBox:{
-    //flex:1,
     position:'absolute',
-    //right:0,
     bottom:0,
     width:'100%'
   },

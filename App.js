@@ -5,10 +5,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from "./components/LoginScreen";
 import WelcomeScreen from "./components/WelcomeScreen";
-import MainScreen from "./components/MainScreen"
-import PreStay from "./components/PreStay/PreStay"
-import DuringStay from "./components/DuringStay/DuringStay"
-import PostStay from "./components/PostStay/PostStay"
+import MainScreen from "./components/MainScreen";
+import PreStay from "./components/PreStay/PreStay";
+import DuringStay from "./components/DuringStay/DuringStay";
+import PostStay from "./components/PostStay/PostStay";
+import DuringStayDetails from "./components/DuringStay/DuringStayDetails";
+
 
 
 Parse.setAsyncStorage(AsyncStorage);
@@ -43,7 +45,9 @@ const Stack = createNativeStackNavigator();
     
   return (
       <NavigationContainer>
-        <Stack.Navigator  initialRouteName="Welcome" >
+        <Stack.Navigator  
+        screenOptions={style}
+        initialRouteName="Welcome" >
           {!isSignedIn?(
             <>
             <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }}/>
@@ -55,17 +59,11 @@ const Stack = createNativeStackNavigator();
             <>
             <Stack.Screen name="Main" component={MainScreen} 
                   options={{ 
-                    title: 'Top Croliday',
-                    headerTitleAlign: 'center',
-                    headerStyle: {
-                      backgroundColor:'#092240',
-                      },
-                    headerTitleStyle:{
-                      color:'white'
-                    }
+                    title: 'Top Croliday'
                     }}/>
-            <Stack.Screen name="PreStay" component={PreStay} options={style}/>
+            <Stack.Screen name="PreStay" component={PreStay} />
             <Stack.Screen name="DuringStay" component={DuringStay}/>
+            <Stack.Screen name="DuringStayDetails"component={DuringStayDetails} options={{ title: 'DuringStay' }}/>
             <Stack.Screen name="PostStay" component={PostStay}/>
               </>
 

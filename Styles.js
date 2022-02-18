@@ -9,14 +9,6 @@ const Styles = StyleSheet.create({
     backgroundColor: '#EDF0F7',
     borderRadius: 50,
     paddingHorizontal: 20,
-    /* center text
-    paddinHorizontal not needed
-    textAlign:'center', */
-
-    /* transparent background
-    borderColor:'white'
-    borderWidth:1
-    backgroundColor:'transparent' */
   },
 });
 

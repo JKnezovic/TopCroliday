@@ -8,8 +8,9 @@ import {useNavigation} from '@react-navigation/native';
 const MainScreenTile = ({item}) => {
   const {desc, title, uri} = item;
   const navigation = useNavigation();
+
   return (
-      <Pressable style={styles.container} onPress={() => navigation.navigate(title)}>
+      <Pressable style={styles.container} onPress={() =>navigation.navigate(title)}>
           <ImageBackground source={uri} resizeMode="cover" style={styles.image}>
               <LinearGradient 
               style={styles.textBox}
