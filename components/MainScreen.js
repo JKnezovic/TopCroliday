@@ -22,7 +22,6 @@ const MainScreen = () => {
       //parseQuery.equalTo('locations',location);
       //let activities = await activitiesQuery.find();
       //setQueryResults(activities);
-      console.log(reservation);
     } catch (error) {
       Alert.alert('Error!', error.message);
     }

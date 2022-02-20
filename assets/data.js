@@ -1,25 +1,25 @@
- export const prestay= [
+export const prestay= [
     fridge= {
       color: '#007d8c',
-      icon: 'cart',
-      name: 'Fridge Restock',
+      iconName: 'fast-food',
+      name: 'Food and drink',
       key:1
    },
     activities= {
       color: '#00ac8d',
-      icon: 'bicycle',
+      iconName: 'bicycle',
       name: 'Activities',
       key:2
     },
     transfer= {
       color: '#004e70',
-      icon: 'car',
+      iconName: 'car',
       name: 'Transfer',
       key:3
     },
     cleaning= {
       color: '#007d8c',
-      icon: 'home',
+      iconName: 'home',
       name: 'Cleaning Services',
       key:4
    }]
@@ -54,7 +54,7 @@
     {
       uri: require('../assets/during.jpeg'),
       title: 'Blue Cave',
-     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
     {
       uri: require('../assets/post.jpg'),
@@ -69,7 +69,7 @@
     {
       uri: require('../assets/during.jpeg'),
       title: 'Blue Cave',
-     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
     {
       uri:require('../assets/pre.jpg'),
@@ -79,7 +79,7 @@
     {
       uri: require('../assets/during.jpeg'),
       title: 'Blue Cave',
-     id: '3ac68afc-c705-48d3-a4f8-fbd91aa97f63',
+      id: '3ac68afc-c705-48d3-a4f8-fbd91aa97f63',
     },
     {
       uri: require('../assets/post.jpg'),
@@ -94,7 +94,7 @@
     {
       uri: require('../assets/during.jpeg'),
       title: 'Blue Cave',
-     id: '3ac6safc-c605-48d3-a4f8-fbd91aa97f63',
+      id: '3ac6safc-c605-48d3-a4f8-fbd91aa97f63',
     },
     {
       uri:require('../assets/pre.jpg'),
@@ -104,7 +104,7 @@
     {
       uri: require('../assets/during.jpeg'),
       title: 'Blue Cave',
-     id: '3ac68afc-c605-4ld3-a4f8-fbd91aa97f63',
+      id: '3ac68afc-c605-4ld3-a4f8-fbd91aa97f63',
     },
     {
       uri: require('../assets/post.jpg'),
@@ -119,8 +119,70 @@
     {
       uri: require('../assets/during.jpeg'),
       title: 'Blue Cave',
-     id: '3ac68afc-c605-48v3-a4f8-fbd91aa97f63',
+      id: '3ac68afc-c605-48v3-a4f8-fbd91aa97f63',
     },
   ]
+export const foodAndDrink =[
+  {
+    id: 1,
+    name: 'Basic breakfast',
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    iconName: 'free-breakfast',
+    iconBank: 'MaterialIcons',
+    color: 'red'
+  
+  },
+  {
+    id: 2,
+    name: 'Kids breakfast',
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    iconName: 'child',
+    iconBank: 'FontAwesome',
+    color: 'red'
+  },
+  {
+    id: 3,
+    name: 'Beer package',
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    iconName: 'beer',
+    iconBank: 'Ionicons',
+    color: 'red'
+  },
+  {
+    id: 4,
+    name: 'Wine package',
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    iconName: 'wine-glass-alt',
+    iconBank: 'FontAwesome5',
+    color: 'red'
+  },
+  {
+    id: 5,
+    name: 'Kids package',
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    iconName: 'child-care',
+    iconBank: 'MaterialIcons',
+    color: 'red'
+  }
+]
+export const cleaningServices = [
+  {
+    id: 1,
+    option: 'Yes, I would like clening services.'
+
+  }
+]
+export const transferServices = [
+  {
+    id: 1,
+    option: 'Airport to accomodation'
+  },
+  {
+    id: 2,
+    option: 'Accomodation to airport'
+  }
+
+]
+
 
   export default {prestay, mainscreen,test}
