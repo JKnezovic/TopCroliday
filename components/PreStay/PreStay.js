@@ -31,7 +31,7 @@ const PreStay = (props) => {
     setSelectedActivities(populateSelection(queryResult));
     setSelectedTransfer(populateSelection(transferServices));
     setSelectedFridgeRestock(populateSelection(foodAndDrink));
-    setSelectedCleaningServices(cleaningServices);
+    setSelectedCleaningServices(populateSelection(cleaningServices));
 
     let tempSelectedActivities = {};
     queryResult.forEach(activityItem => tempSelectedActivities[activityItem.id]=false);
@@ -42,8 +42,8 @@ const populateSelection = (items) => {
   items.forEach(item => selection[item.id] = false);
   return selection;
 }
-const changeSelection = (id) => {
-  setSelectedActivities(prevState => ({
+const changeSelection = (setSelection, id) => {
+  setSelection(prevState => ({
     ...prevState, 
     [id]: !prevState[id],}));
   
@@ -56,25 +56,34 @@ const changeSelection = (id) => {
     })
     setPrestayMenu(menu);
   }
-  
-
   const collapseItem = name => {
     setPrestayMenu(prevState => ({
       ...prevState,
       [name]: !prevState[name],
     }))
   }
-
   const submitSelection = () => {
     const choices ={
       "fridgeRestock": "",
       "cleaningServices": "",
       "transfer": "",
       "activities": []}
-    
+    updateReservation();
     navigation.navigate("Main");
     
   }
+  const updateReservation = async function () {
+    let Reservation = new Parse.Object('Reservation');
+    Reservation.set('objectId', 'QvrCZ14UsY');
+    let choices = {'test': 'test'}
+    Reservation.set('choices', choices);
+    try {
+      await Reservation.save();
+  
+    } catch (error) {
+      Alert.alert('Error!', error.message);
+    };
+  };
  
  const items = prestay.map(value =>
     <PreStayTile item={value} 
@@ -82,8 +91,9 @@ const changeSelection = (id) => {
     isCollapsed = {prestayMenu[value.name]} 
     collapseItem={collapseItem} 
     changeSelection={changeSelection}
+    setSelection={{setSelectedActivities, setSelectedCleaningServices, setSelectedFridgeRestock, setSelectedTransfer}}
     activities={activities}
-    selectedActivities={selectedActivities}/>)
+    selectedItems={{selectedFridgeRestock, selectedActivities, selectedTransfer, selectedCleaningServices}}/>)
   return (
     <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={styles.container}>

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 import { MaterialIcons, Ionicons, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import RadioButton from '../RadioButton';
 
-export default function FridgeRestockTile({item}) {
+export default function FridgeRestockTile({item, changeSelection, isSelected}) {
     const Icons = { 
       'MaterialIcons': MaterialIcons, 
       'Ionicons': Ionicons, 
@@ -17,7 +17,7 @@ export default function FridgeRestockTile({item}) {
       <Icon name={item.iconName} size={60} color="black"/>
       <Text>{item.name}</Text>
       <Text>{item.description}</Text>
-      <RadioButton/>
+      <RadioButton changeSelection={changeSelection} selected={isSelected}/>
     </View>
   )
 }

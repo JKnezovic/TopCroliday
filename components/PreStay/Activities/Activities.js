@@ -5,9 +5,9 @@ import ActivitiesTile from './ActivitiesTile';
 
 
 
-const Activities = ({activities, changeSelection, selectedActivities}) => {
+const Activities = ({activities, changeSelection, selectedActivities, setSelection}) => {
   const items = activities.map(item =>
-    <ActivitiesTile key={item.id} item={item} changeSelection={()=>changeSelection(item.id)} isSelected = {selectedActivities[item.id]}/>)
+    <ActivitiesTile key={item.id} item={item} changeSelection={()=>changeSelection(setSelection,item.id)} isSelected = {selectedActivities[item.id]}/>)
 
   return (
         <View style={styles.container}>

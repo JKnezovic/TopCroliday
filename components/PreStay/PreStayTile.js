@@ -4,19 +4,20 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import Activities from './Activities/Activities';
 import FridgeRestock from './FridgeRestock/FridgeRestock';
-import { prestay } from '../../assets/data';
+import TransferServices from './TransferServices/TransferServices';
+import CleaningServices from './CleaningServices/CleaningServices';
 
-const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelection, selectedActivities}) => {
+const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelection, selectedItems, setSelection}) => {
   const renderSwitch = name => {
     switch(name){
       case 'Food and drink':
-        return <FridgeRestock/>
+        return <FridgeRestock changeSelection={changeSelection} selectedFridgeRestock={selectedItems.selectedFridgeRestock} setSelection={setSelection.setSelectedFridgeRestock}/>
       case 'Activities':
-        return <Activities changeSelection={changeSelection} activities={activities} selectedActivities={selectedActivities}/>
+        return <Activities changeSelection={changeSelection} activities={activities} selectedActivities={selectedItems.selectedActivities} setSelection={setSelection.setSelectedActivities}/>
       case 'Transfer':
-        break;
-      case 'cleaning Services':
-        break;
+        return <TransferServices changeSelection={changeSelection} selectedTransferServices={selectedItems.selectedTransfer} setSelection={setSelection.setSelectedTransfer}/>
+      case 'Cleaning Services':
+        return <CleaningServices changeSelection={changeSelection} selectedCleaningServices={selectedItems.selectedCleaningServices} setSelection={setSelection.setSelectedCleaningServices}/>
     }
 
   }

@@ -168,7 +168,7 @@ export const foodAndDrink =[
 export const cleaningServices = [
   {
     id: 1,
-    option: 'Yes, I would like clening services.'
+    option: 'Yes, I would like cleaning services.'
 
   }
 ]
