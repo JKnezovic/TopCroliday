@@ -12,11 +12,13 @@ import PostStay from "./components/PostStay/PostStay";
 import DuringStayDetails from "./components/DuringStay/DuringStayDetails";
 import ReservationContext from "./ReservationContext"
 import AboutActivity from './components/PreStay/Activities/AboutActivity';
+import Admin from "./components/Admin/AdminScreen";
 
 
 Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize('F4H5ofBLuLAIxCkwAE2E2oS2Hn1b5kppANz13hd0','tZrBhwOCMFkTbg1WJcWzgjVgoJ38sK5Xb0QjpywB');
 Parse.serverURL = 'https://parseapi.back4app.com/';
+
 
 const style={
   headerTitleAlign: 'center',
@@ -29,6 +31,7 @@ const style={
   headerTintColor: 'white',
   }
 
+
 const Stack = createNativeStackNavigator();
 
 
@@ -36,30 +39,31 @@ const Stack = createNativeStackNavigator();
 
     const [isSignedIn,setIsSignedIn] = React.useState(false)
     const [reservation, setReservation] = React.useState({})
+    const [username, setUsername] = React.useState("")
 
-    const handleAuthStatus= async function(){
-      const currentUser = await Parse.User.currentAsync();
-      setIsSignedIn(currentUser?true:false)
-    }
 
     const getReservation = async () => {
       const reservationQuery = new Parse.Query('Reservation');
       const currentUser = await Parse.User.currentAsync();
-      reservationQuery.equalTo("user", currentUser);
-      try {
-        let currentReservation = await reservationQuery.first();
-        setReservation(currentReservation)
-        
-      } catch (error) {
-        console.log('Error!', error.message);
-        return false;
-      };
+        if(currentUser){
+          reservationQuery.equalTo("user", currentUser);
+        try {
+          let currentReservation = await reservationQuery.first();
+          setReservation(currentReservation)
+          
+        } catch (error) {
+          console.log('Error!', error.message);
+          return false;
+        };
+      }
+      setUsername(currentUser.getUsername())
+      console.log(currentUser.getUsername())
+      setIsSignedIn(currentUser?true:false) 
     }
 
     React.useEffect(() => {
-      handleAuthStatus()
       getReservation();
-    });
+    },[]);
 
     
   return (
@@ -68,27 +72,30 @@ const Stack = createNativeStackNavigator();
         <Stack.Navigator  
         screenOptions={style}
         initialRouteName="Welcome" >
-          {!isSignedIn?(
+          {!isSignedIn?
             <>
             <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="Login" options={{ headerShown: false }}>
-            {props => <LoginScreen {...props} handleAuthStatus={handleAuthStatus} getReservation={getReservation} />}
+            {props => <LoginScreen {...props} getReservation={getReservation} />}
             </Stack.Screen>
             </>
-            ):(
-            <>
-            <Stack.Screen name="Main" component={MainScreen} 
-                  options={{ 
-                    title: 'Top Croliday'
-                    }}/>
-            <Stack.Screen name="PreStay" component={PreStay} />
-            <Stack.Screen name="AboutActivity" component={AboutActivity}/>
-            <Stack.Screen name="DuringStay" component={DuringStay}/>
-            <Stack.Screen name="DuringStayDetails"component={DuringStayDetails} options={{ title: 'DuringStay' }}/>
-            <Stack.Screen name="PostStay" component={PostStay}/>
+            :
+              username==='admin'?
+              <Stack.Screen name="Admin" component={Admin}/>
+              :
+              <>
+                <Stack.Screen name="Main" component={MainScreen} 
+                      options={{ 
+                        title: 'Top Croliday'
+                        }}/>
+                <Stack.Screen name="PreStay" component={PreStay} />
+                <Stack.Screen name="DuringStay" component={DuringStay}/>
+                <Stack.Screen name="AboutActivity" component={AboutActivity}/>
+                <Stack.Screen name="DuringStayDetails"component={DuringStayDetails} options={{ title: 'DuringStay' }}/>
+                <Stack.Screen name="PostStay" component={PostStay}/>
               </>
 
-            )}
+            }
             
         </Stack.Navigator>
       </NavigationContainer>

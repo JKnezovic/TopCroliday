@@ -5,6 +5,7 @@ import Styles from '../Styles';
 import Button from "./Button"
 
 export const UserLogin = (props) => {
+  console.log(props)
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +15,6 @@ export const UserLogin = (props) => {
     const passwordValue = password;
     return await Parse.User.logIn(usernameValue, passwordValue)
       .then(() => {
-        props.handleAuthStatus();
         props.getReservation()
         return true;
       })
