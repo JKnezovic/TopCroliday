@@ -14,7 +14,7 @@ const LoginScreen = (props) => {
             <Text style={[styles.text, styles.bigText]}>Welcome</Text>
             <Text style={[styles.text, styles.description,{marginBottom:20}]}>Enter username and password you recieved</Text>
           </View>
-          <UserLogin handleAuthStatus={props.handleAuthStatus}/>
+          <UserLogin getReservation={props.getReservation}/>
       </ImageBackground>
     </View>
   );

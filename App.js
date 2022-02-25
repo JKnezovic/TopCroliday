@@ -47,17 +47,16 @@ const Stack = createNativeStackNavigator();
       const currentUser = await Parse.User.currentAsync();
         if(currentUser){
           reservationQuery.equalTo("user", currentUser);
+          setUsername(currentUser.getUsername())
+          console.log(currentUser.getUsername())
         try {
           let currentReservation = await reservationQuery.first();
           setReservation(currentReservation)
-          
         } catch (error) {
           console.log('Error!', error.message);
           return false;
         };
       }
-      setUsername(currentUser.getUsername())
-      console.log(currentUser.getUsername())
       setIsSignedIn(currentUser?true:false) 
     }
 

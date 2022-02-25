@@ -5,7 +5,7 @@ import Styles from '../Styles';
 import Button from "./Button"
 
 export const UserLogin = (props) => {
-  console.log(props)
+  console.log("props me bitch",props)
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
