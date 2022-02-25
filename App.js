@@ -10,12 +10,13 @@ import PreStay from "./components/PreStay/PreStay";
 import DuringStay from "./components/DuringStay/DuringStay";
 import PostStay from "./components/PostStay/PostStay";
 import DuringStayDetails from "./components/DuringStay/DuringStayDetails";
-
+import Admin from "./components/Admin/AdminScreen";
 
 
 Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize('F4H5ofBLuLAIxCkwAE2E2oS2Hn1b5kppANz13hd0','tZrBhwOCMFkTbg1WJcWzgjVgoJ38sK5Xb0QjpywB');
 Parse.serverURL = 'https://parseapi.back4app.com/';
+
 
 const style={
   headerTitleAlign: 'center',
@@ -27,6 +28,7 @@ const style={
   },
   headerTintColor: 'white',
   }
+
 
 const Stack = createNativeStackNavigator();
 
@@ -57,15 +59,16 @@ const Stack = createNativeStackNavigator();
             </>
             ):(
             <>
-            <Stack.Screen name="Main" component={MainScreen} 
-                  options={{ 
-                    title: 'Top Croliday'
-                    }}/>
-            <Stack.Screen name="PreStay" component={PreStay} />
-            <Stack.Screen name="DuringStay" component={DuringStay}/>
-            <Stack.Screen name="DuringStayDetails"component={DuringStayDetails} options={{ title: 'DuringStay' }}/>
-            <Stack.Screen name="PostStay" component={PostStay}/>
-              </>
+              <Stack.Screen name="Admin" component={Admin}/>
+              {/* <Stack.Screen name="Main" component={MainScreen} 
+                    options={{ 
+                      title: 'Top Croliday'
+                      }}/>
+              <Stack.Screen name="PreStay" component={PreStay} />
+              <Stack.Screen name="DuringStay" component={DuringStay}/>
+              <Stack.Screen name="DuringStayDetails"component={DuringStayDetails} options={{ title: 'DuringStay' }}/>
+              <Stack.Screen name="PostStay" component={PostStay}/> */}
+            </>
 
             )}
             
