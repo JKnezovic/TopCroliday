@@ -25,10 +25,10 @@ const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelecti
   return (
     <>
       <Pressable style={{width: '100%'}} onPress={()=> collapseItem(name)}>
-      <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', height: 100}}>
+      <View style={styles.tile}>
       <View style={{height: '100%',width:'30%', backgroundColor: color, borderRadius:25, alignItems:'center',
              justifyContent:'center'}}>
-          <Ionicons style={styles.iconBig} name={iconName} size={60} color="black" />
+          <Ionicons style={styles.iconBig} name={iconName} size={60}/>
           </View>
             <Text style={{fontSize:24,color:'#092240'}}>{name}</Text>
             <AntDesign name={isCollapsed ? "up" : "down"} size={30} color="#092240" />
@@ -44,13 +44,12 @@ const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelecti
 export default PreStayTile;
 
 const styles = StyleSheet.create({
-  container: {
-    height:'16%',
-    flexDirection: 'row',
-    width:'95%',
-    paddingVertical: 6,
-    marginTop: 6,
-    justifyContent:'space-between',
+  tile: {
+    display: 'flex', 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    height: 100, 
+    justifyContent: 'space-between',
     borderRadius:25,
     backgroundColor:'white',
     alignItems:'center',
@@ -59,9 +58,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 2,
     elevation: 2,
+    marginTop: 6,
+    paddingRight: 6
   },
   iconBig:{
     color:'white',
-   
   }
 })

@@ -15,6 +15,7 @@ export const UserLogin = (props) => {
     return await Parse.User.logIn(usernameValue, passwordValue)
       .then(() => {
         props.handleAuthStatus();
+        props.getReservation()
         return true;
       })
       .catch((error) => {

@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
+    paddingHorizontal: '1%'
   },
   child: {
     flexBasis: '50%'

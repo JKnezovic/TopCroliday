@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { StyleSheet, View, ScrollView} from 'react-native';
 import PreStayTile from './PreStayTile';
 import Button from '../Button';
 import {prestay, foodAndDrink, transferServices, cleaningServices} from '../../assets/data';
 import Parse from "parse/react-native.js";
 import {useNavigation} from '@react-navigation/native';
+import ReservationContext from '../../ReservationContext';
 
 
 
-const PreStay = (props) => {
+const PreStay = () => {
   const navigation = useNavigation();
   const [prestayMenu, setPrestayMenu] = useState({})
   const [activities, setActivities] = useState([]);
@@ -17,30 +18,67 @@ const PreStay = (props) => {
   const [selectedTransfer, setSelectedTransfer] = useState({});
   const [selectedCleaningServices, setSelectedCleaningServices] = useState({});
 
+  const reservation = useContext(ReservationContext);
+
   useEffect(()=>{
     populatePrestay(prestay);
+    populateSelection(reservation);
 
     //get activities
     getActivities();
   }, [])
   const getActivities = async () => {
     let activitiesQuery = new Parse.Query('Activities');
-    let queryResult = await activitiesQuery.find();
-    setActivities(queryResult)
+    try {
+      let queryResult = await activitiesQuery.find();
+      setActivities(queryResult)
 
-    setSelectedActivities(populateSelection(queryResult));
+    } catch (error) {
+      
+    }
+    
+    
+
+    /* setSelectedActivities(populateSelection(queryResult));
     setSelectedTransfer(populateSelection(transferServices));
     setSelectedFridgeRestock(populateSelection(foodAndDrink));
     setSelectedCleaningServices(populateSelection(cleaningServices));
 
     let tempSelectedActivities = {};
     queryResult.forEach(activityItem => tempSelectedActivities[activityItem.id]=false);
-    setSelectedActivities(tempSelectedActivities);
+    setSelectedActivities(tempSelectedActivities); */
   }
-const populateSelection = (items) => {
+/* const populateSelection = (items) => {
   let selection = {};
   items.forEach(item => selection[item.id] = false);
   return selection;
+} */
+const populateSelection = reservation => {
+  console.log(reservation.get("choices"));
+  let choices = reservation.get("choices");
+  let tempActivities = {};
+  choices["activities"].forEach(
+    item => tempActivities[item.id] = true
+  )
+  setSelectedActivities(tempActivities);
+
+  let tempcleaningServices = {};
+  choices["cleaningServices"].forEach(
+    item => tempcleaningServices[item.id] = true
+  )
+  setSelectedCleaningServices(tempcleaningServices);
+
+  let tempFridgeRestock = {};
+  choices["fridgeRestock"].forEach(
+    item => tempFridgeRestock[item.id] = true
+  )
+  setSelectedFridgeRestock(tempFridgeRestock);
+
+  let tempTransfer = {};
+  choices["transfer"].forEach(
+    item => tempTransfer[item.id] = true
+  )
+  setSelectedTransfer(tempTransfer);
 }
 const changeSelection = (setSelection, id) => {
   setSelection(prevState => ({
@@ -63,19 +101,34 @@ const changeSelection = (setSelection, id) => {
     }))
   }
   const submitSelection = () => {
-    const choices ={
-      "fridgeRestock": "",
-      "cleaningServices": "",
-      "transfer": "",
-      "activities": []}
-    updateReservation();
+    updateReservation(reservation);
     navigation.navigate("Main");
     
   }
-  const updateReservation = async function () {
+  const createChoices = ()=>{
+    const choices = {
+      "fridgeRestock": fillChoice(foodAndDrink, selectedFridgeRestock),
+      "cleaningServices": fillChoice(cleaningServices, selectedCleaningServices),
+      "transfer": fillChoice(transferServices, selectedTransfer),
+      "activities": fillChoice(activities, selectedActivities)
+    }
+    return choices;
+  }
+  const fillChoice = (items, selected) => {
+    console.log(selected)
+    let choice = [];
+    items.forEach(
+      item => {
+        if(selected[item.id])
+          choice.push(item);
+      }
+    )
+      return choice;
+  }
+  const updateReservation = async function (reservation) {
     let Reservation = new Parse.Object('Reservation');
-    Reservation.set('objectId', 'QvrCZ14UsY');
-    let choices = {'test': 'test'}
+    Reservation.set('objectId', reservation.id);
+    let choices = createChoices();
     Reservation.set('choices', choices);
     try {
       await Reservation.save();
@@ -100,7 +153,7 @@ const changeSelection = (setSelection, id) => {
         
         {items}
       </ScrollView>
-      <Button style={{position: 'absolute'}} title={'Submit'} onPress={()=>submitSelection()}/>
+      <Button style={styles.button} title={'Submit'} onPress={()=>submitSelection()}/>
     </View>
       
          
@@ -112,22 +165,11 @@ export default PreStay;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems:'center'
-  },
-  containerTest: {
-    height:'16%',
-    flexDirection: 'row',
-    width:'95%',
-    paddingVertical: 6,
-    marginTop: 6,
-    justifyContent:'space-between',
-    borderRadius:25,
-    backgroundColor:'white',
     alignItems:'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    elevation: 2,
+    padding: 12
   },
+  button: {
+    position: 'absolute',
+    bottom: 30
+  }
 })

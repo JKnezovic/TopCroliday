@@ -126,7 +126,7 @@ export const foodAndDrink =[
   {
     id: 1,
     name: 'Basic breakfast',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'free-breakfast',
     iconBank: 'MaterialIcons',
     color: 'red'
@@ -135,7 +135,7 @@ export const foodAndDrink =[
   {
     id: 2,
     name: 'Kids breakfast',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. `,
     iconName: 'child',
     iconBank: 'FontAwesome',
     color: 'red'
@@ -143,7 +143,7 @@ export const foodAndDrink =[
   {
     id: 3,
     name: 'Beer package',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'beer',
     iconBank: 'Ionicons',
     color: 'red'
@@ -151,7 +151,7 @@ export const foodAndDrink =[
   {
     id: 4,
     name: 'Wine package',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'wine-glass-alt',
     iconBank: 'FontAwesome5',
     color: 'red'
@@ -159,7 +159,7 @@ export const foodAndDrink =[
   {
     id: 5,
     name: 'Kids package',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'child-care',
     iconBank: 'MaterialIcons',
     color: 'red'

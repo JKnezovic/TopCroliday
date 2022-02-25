@@ -5,7 +5,7 @@ import CleaningServicesOption from './CleaningServicesOption'
 
 export default function CleaningServices({changeSelection, selectedCleaningServices, setSelection}) {
   const items = cleaningServices.map(item =>
-    <CleaningServicesOption item ={item} changeSelection={()=> changeSelection(setSelection, item.id)} isSelected={selectedCleaningServices[item.id]} />)
+    <CleaningServicesOption key={item.id} item ={item} changeSelection={()=> changeSelection(setSelection, item.id)} isSelected={selectedCleaningServices[item.id]} />)
   return (
     <View>
         {items}
