@@ -29,7 +29,7 @@ export default function AboutActivity({route}) {
           console.log('Error!', error.message);
         };
       }
-  if(activity)
+  if(activity && images)
     return (
       
       <View style={styles.container}>

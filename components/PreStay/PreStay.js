@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { StyleSheet, View, ScrollView} from 'react-native';
+import { StyleSheet, View, ScrollView, ToastAndroid} from 'react-native';
 import PreStayTile from './PreStayTile';
 import Button from '../Button';
 import {prestay, foodAndDrink, transferServices, cleaningServices} from '../../assets/data';
@@ -94,6 +94,7 @@ const changeSelection = (setSelection, id) => {
   }
   const submitSelection = () => {
     updateReservation(reservation);
+    ToastAndroid.show('Your selection has been saved', ToastAndroid.SHORT);
     navigation.navigate("Main");
     
   }
