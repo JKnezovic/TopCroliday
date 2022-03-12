@@ -23,10 +23,10 @@ export default function RadioButton(props) {
   const styles = StyleSheet.create({
     radioButtonOuter: {
       height: 24,
-                  width: 24,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 12,
+      width: 24,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 12,
     },
     blackOuter: {
       

@@ -18,10 +18,10 @@ const Activities = ({activities, changeSelection, selectedActivities, setSelecti
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    paddingHorizontal: '1%'
   },
   child: {
     flexBasis: '50%'

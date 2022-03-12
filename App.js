@@ -48,7 +48,6 @@ const Stack = createNativeStackNavigator();
         if(currentUser){
           reservationQuery.equalTo("user", currentUser);
           setUsername(currentUser.getUsername())
-          console.log(currentUser.getUsername())
         try {
           let currentReservation = await reservationQuery.first();
           setReservation(currentReservation)

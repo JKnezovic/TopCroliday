@@ -1,23 +1,39 @@
 import * as React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import Activities from './Activities/Activities';
 import FridgeRestock from './FridgeRestock/FridgeRestock';
 import TransferServices from './TransferServices/TransferServices';
 import CleaningServices from './CleaningServices/CleaningServices';
 
 const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelection, selectedItems, setSelection}) => {
-  const renderSwitch = name => {
+  const renderSwitch = (name, color) => {
     switch(name){
       case 'Food and drink':
-        return <FridgeRestock changeSelection={changeSelection} selectedFridgeRestock={selectedItems.selectedFridgeRestock} setSelection={setSelection.setSelectedFridgeRestock}/>
+        return <FridgeRestock 
+                  changeSelection={changeSelection} 
+                  selectedFridgeRestock={selectedItems.selectedFridgeRestock} 
+                  setSelection={setSelection.setSelectedFridgeRestock}
+                  color={color}/>
       case 'Activities':
-        return <Activities changeSelection={changeSelection} activities={activities} selectedActivities={selectedItems.selectedActivities} setSelection={setSelection.setSelectedActivities}/>
+        return <Activities 
+                  changeSelection={changeSelection} 
+                  activities={activities} 
+                  selectedActivities={selectedItems.selectedActivities} 
+                  setSelection={setSelection.setSelectedActivities}
+                  />
       case 'Transfer':
-        return <TransferServices changeSelection={changeSelection} selectedTransferServices={selectedItems.selectedTransfer} setSelection={setSelection.setSelectedTransfer}/>
+        return <TransferServices 
+                  changeSelection={changeSelection} 
+                  selectedTransferServices={selectedItems.selectedTransfer} 
+                  setSelection={setSelection.setSelectedTransfer}
+                  color={color}/>
       case 'Cleaning Services':
-        return <CleaningServices changeSelection={changeSelection} selectedCleaningServices={selectedItems.selectedCleaningServices} setSelection={setSelection.setSelectedCleaningServices}/>
+        return <CleaningServices 
+                  changeSelection={changeSelection} 
+                  selectedCleaningServices={selectedItems.selectedCleaningServices} 
+                  setSelection={setSelection.setSelectedCleaningServices}
+                  color={color}/>
     }
 
   }
@@ -35,7 +51,10 @@ const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelecti
       </View>
           
         </Pressable>
-        {isCollapsed && renderSwitch(name)}
+        <View style={{marginHorizontal: '6%', alignItems: 'center'}}>
+          {isCollapsed && renderSwitch(name, color)}
+        </View>
+        
     </>
       
   );

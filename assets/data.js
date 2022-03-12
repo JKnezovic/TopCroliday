@@ -128,8 +128,7 @@ export const foodAndDrink =[
     name: 'Basic breakfast',
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'free-breakfast',
-    iconBank: 'MaterialIcons',
-    color: 'red'
+    iconBank: 'MaterialIcons'
   
   },
   {
@@ -137,52 +136,61 @@ export const foodAndDrink =[
     name: 'Kids breakfast',
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. `,
     iconName: 'child',
-    iconBank: 'FontAwesome',
-    color: 'red'
+    iconBank: 'FontAwesome'
   },
   {
     id: 3,
     name: 'Beer package',
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'beer',
-    iconBank: 'Ionicons',
-    color: 'red'
+    iconBank: 'Ionicons'
   },
   {
     id: 4,
     name: 'Wine package',
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'wine-glass-alt',
-    iconBank: 'FontAwesome5',
-    color: 'red'
+    iconBank: 'FontAwesome5'
   },
   {
     id: 5,
     name: 'Kids package',
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
     iconName: 'child-care',
-    iconBank: 'MaterialIcons',
-    color: 'red'
+    iconBank: 'MaterialIcons'
   }
 ]
 export const cleaningServices = [
   {
     id: 1,
-    option: 'Yes, I would like cleaning services.'
+    option: 'Yes, I would like cleaning services.',
+    iconName: 'cleaning-services'
 
   }
 ]
 export const transferServices = [
   {
     id: 1,
-    option: 'Airport to accomodation'
+    option: 'Airport to accomodation',
+    iconName: 'plane-arrival'
   },
   {
     id: 2,
-    option: 'Accomodation to airport'
+    option: 'Accomodation to airport',
+    iconName: 'plane-departure'
   }
 
 ]
 
+export const infoCleaningServices = `* Should you need cleaning services during your stay, we stay at your disposal. The prices for cleaning vary depending on the type of the service.
 
-  export default {prestay, mainscreen,test}
+* Please give us a week up front notice.`
+
+export const infoTransfer = `* You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner:
++385-…...`
+
+export const modalText = {
+  title: `Notice !`,
+  description: `By clicking and submitting your desired activity you are not booking it, but helping us make an offer to you based on your interest.
+  Remember the prices are informative and can vary!`
+}

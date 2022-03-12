@@ -5,19 +5,14 @@ import {  View, Image, ScrollView, Text, StyleSheet, Dimensions} from 'react-nat
 const {width} = Dimensions.get('window')
 const height = width * 0.6;
 
-const images = [
-  'https://images.pexels.com/photos/4869123/pexels-photo-4869123.jpeg?cs=srgb&dl=pexels-lucas-meneses-4869123.jpg&fm=jpg',
-  'https://images.pexels.com/photos/10611447/pexels-photo-10611447.jpeg?cs=srgb&dl=pexels-yaroslava-borz-10611447.jpg&fm=jpg',
-  'https://images.pexels.com/photos/10205821/pexels-photo-10205821.jpeg?cs=srgb&dl=pexels-eugene-liashchevskyi-10205821.jpg&fm=jpg',
-]
 
-export default function ImageSlider() {
+
+export default function ImageSlider({images}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const changeDotIndicator = e => {
     let count = Math.ceil(e.nativeEvent.contentOffset.x/e.nativeEvent.layoutMeasurement.width);
     setCurrentIndex(count);
   }
-    
   return (
     <View style={styles.container}>
       
@@ -26,11 +21,11 @@ export default function ImageSlider() {
       pagingEnabled
       onScroll={changeDotIndicator}>
         {images.map((image, idx) => 
-          <Image key={idx} source={{uri: image}} style={styles.image}/>
+            <Image key={idx} source={{uri: image.url()}} style={styles.image}/>
         )}
       </ScrollView>
       <View style={styles.dotsContainer}>
-        {images.map((count, index) => <Text key={index} style={currentIndex === index ? styles.dotActive : styles.dot}> ● </Text>)}
+        {images.map((image, index) => <Text key={index} style={currentIndex === index ? styles.dotActive : styles.dot}> ● </Text>)}
         
       </View>
     </View>

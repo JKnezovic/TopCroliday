@@ -6,6 +6,7 @@ import {prestay, foodAndDrink, transferServices, cleaningServices} from '../../a
 import Parse from "parse/react-native.js";
 import {useNavigation} from '@react-navigation/native';
 import ReservationContext from '../../ReservationContext';
+import SubmitModal from './SubmitModal';
 
 
 
@@ -17,8 +18,11 @@ const PreStay = () => {
   const [selectedFridgeRestock, setSelectedFridgeRestock] = useState({});
   const [selectedTransfer, setSelectedTransfer] = useState({});
   const [selectedCleaningServices, setSelectedCleaningServices] = useState({});
+  const [modalVisible, setModalVisible] = useState(false)
+  const [submitDisabled, setSubmitDisabled] = useState(false)
 
   const reservation = useContext(ReservationContext);
+  const accommodationType = reservation.get('accommodation').get('Type');
 
   useEffect(()=>{
     populatePrestay(prestay);
@@ -27,6 +31,10 @@ const PreStay = () => {
     //get activities
     getActivities();
   }, [])
+  useEffect(()=>{
+    isSubmitDisabled()
+
+  }, [selectedActivities,selectedCleaningServices, selectedFridgeRestock, selectedTransfer])
   const getActivities = async () => {
     let activitiesQuery = new Parse.Query('Activities');
     try {
@@ -54,7 +62,6 @@ const PreStay = () => {
   return selection;
 } */
 const populateSelection = reservation => {
-  console.log(reservation.get("choices"));
   let choices = reservation.get("choices");
   let tempActivities = {};
   choices["activities"].forEach(
@@ -115,7 +122,6 @@ const changeSelection = (setSelection, id) => {
     return choices;
   }
   const fillChoice = (items, selected) => {
-    console.log(selected)
     let choice = [];
     items.forEach(
       item => {
@@ -137,23 +143,81 @@ const changeSelection = (setSelection, id) => {
       Alert.alert('Error!', error.message);
     };
   };
+  const isSubmitDisabled = () => {
+    if(!selectedActivities.length && !selectedCleaningServices && !selectedFridgeRestock && !selectedTransfer)
+      setSubmitDisabled(true)
+    else
+    {
+      console.log(selectedActivities)
+      for (key in selectedActivities)
+      {
+        if(selectedActivities[key] === true)
+        {
+          console.log('selectedActivities', key)
+          setSubmitDisabled(false);
+          return 0;
+        }
+      }
+      for (key in selectedCleaningServices)
+      {
+        console.log('selectedCleaningServices')
+
+        if(selectedCleaningServices[key] === true)
+        {
+          setSubmitDisabled(false);
+          return 0;
+        }
+      }
+      for (key in selectedFridgeRestock)
+      {
+        console.log('selectedFridgeRestock')
+
+        if(selectedFridgeRestock[key] === true)
+        {
+          setSubmitDisabled(false);
+          return 0;
+        }
+      }
+      for (key in selectedTransfer)
+      {
+        console.log('selectedTransfer')
+
+        if(selectedTransfer[key] === true)
+        {
+          setSubmitDisabled(false);
+          return 0;
+        }
+      }
+      setSubmitDisabled(true)
+    }
+  }
  
- const items = prestay.map(value =>
-    <PreStayTile item={value} 
-    key={value.key}  
-    isCollapsed = {prestayMenu[value.name]} 
-    collapseItem={collapseItem} 
-    changeSelection={changeSelection}
-    setSelection={{setSelectedActivities, setSelectedCleaningServices, setSelectedFridgeRestock, setSelectedTransfer}}
-    activities={activities}
-    selectedItems={{selectedFridgeRestock, selectedActivities, selectedTransfer, selectedCleaningServices}}/>)
+ const items = prestay.map(value =>{
+  if(accommodationType !== 'Villa' && value.name === 'Food and drink')
+    return null;
+  else
+    return <PreStayTile item={value} 
+      key={value.key}  
+      isCollapsed = {prestayMenu[value.name]} 
+      collapseItem={collapseItem} 
+      changeSelection={changeSelection}
+      setSelection={{setSelectedActivities, setSelectedCleaningServices, setSelectedFridgeRestock, setSelectedTransfer}}
+      activities={activities}
+      selectedItems={{selectedFridgeRestock, selectedActivities, selectedTransfer, selectedCleaningServices}}/>
+ }
+    )
   return (
     <View style={{flex: 1}}>
+      
+      <SubmitModal  isVisible={modalVisible}
+                    submit={submitSelection}
+                    setModalVisible={setModalVisible}/>
+      
       <ScrollView contentContainerStyle={styles.container}>
         
         {items}
       </ScrollView>
-      <Button style={styles.button} title={'Submit'} onPress={()=>submitSelection()}/>
+      <Button style={styles.button} title={'Submit'} disabled={submitDisabled} onPress={()=>setModalVisible(true)}/>
     </View>
       
          
@@ -166,7 +230,7 @@ export default PreStay;
 const styles = StyleSheet.create({
   container: {
     alignItems:'center',
-    padding: 12
+    paddingBottom: '30%'
   },
   button: {
     position: 'absolute',
