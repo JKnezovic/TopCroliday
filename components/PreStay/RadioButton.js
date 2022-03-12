@@ -5,14 +5,14 @@ export default function RadioButton(props) {
     return (
       <Pressable onPress={props.changeSelection}>
         <View style={[
-          styles.radioButtonOuter, 
-          props.color === 'white' ? styles.whiteOuter : styles.blackOuter, 
-          props.style]}>
+          styles.radioButtonOuter,
+          props.style, 
+          props.selected ?  props.color === 'white' ? styles.whiteGreenOuter : styles.greenOuter
+                          : props.color === 'white' ? styles.whiteOuter : styles.blackOuter]}>
                   {
                     props.selected ?
                       <View style={[
-                        styles.radioButtonInner, 
-                        props.color === 'white' ? styles.whiteInner : styles.blackInner]}/>
+                        styles.radioButtonInner]}/>
                       : null
                   }
                 </View>
@@ -27,28 +27,31 @@ export default function RadioButton(props) {
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
+      borderWidth: 2,
     },
     blackOuter: {
-      
-      borderWidth: 2,
       borderColor: '#000',
     },
+    greenOuter: {
+      borderColor: '#09814a',
+    },
     whiteOuter: {
+      borderColor: 'black',
       backgroundColor: '#fff',
-      opacity: 0.5
+      opacity: 0.8
+
+    },
+    whiteGreenOuter: {
+      borderColor: '#09814a',
+      backgroundColor: '#fff',
+      opacity: 0.8
 
     },
     radioButtonInner: {
-      height: 12,
-      width: 12,
-      borderRadius: 6,
+      height: 14,
+      width: 14,
+      borderRadius: 7,
+      backgroundColor: '#09814a'
     },
-    blackInner: {
-      backgroundColor: '#000',
-    },
-    whiteInner: {
-      backgroundColor: '#fff',
-      opacity: 1.0
-    }
   }
   )
