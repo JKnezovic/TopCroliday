@@ -42,15 +42,14 @@ const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelecti
     <>
       <Pressable style={{width: '100%'}} onPress={()=> collapseItem(name)}>
       <View style={styles.tile}>
-      <View style={{height: '100%',width:'30%', backgroundColor: color, borderRadius:25, alignItems:'center',
+        <View style={{height: '100%',width:'30%', backgroundColor: color, borderRadius:25, alignItems:'center',
              justifyContent:'center'}}>
           <Ionicons style={styles.iconBig} name={iconName} size={60}/>
-          </View>
-            <Text style={{fontSize:24,color:'#092240'}}>{name}</Text>
-            <AntDesign name={isCollapsed ? "up" : "down"} size={30} color="#092240" />
+        </View>
+          <Text style={{fontSize:24,color:'#092240'}}>{name}</Text>
+          <AntDesign name={isCollapsed ? "up" : "down"} size={30} color="#092240" />
       </View>
-          
-        </Pressable>
+      </Pressable>
         <View style={{marginHorizontal: '6%', alignItems: 'center'}}>
           {isCollapsed && renderSwitch(name, color)}
         </View>

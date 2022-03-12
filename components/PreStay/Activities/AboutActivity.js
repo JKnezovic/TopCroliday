@@ -19,7 +19,8 @@ export default function AboutActivity({route}) {
           let joinedResults = await imagesQuery.find();
           let tempImages = [];
           joinedResults.forEach(
-            element => tempImages.push(element.get('image'))
+            element => {tempImages.push({image: element.get('image'), description: element.get("description")})
+          }
           )
           setImages(tempImages)
           setActivity(joinedResults[0].get('activityPointer'))

@@ -182,9 +182,9 @@ export const transferServices = [
 
 ]
 
-export const infoCleaningServices = `* Should you need cleaning services during your stay, we stay at your disposal. The prices for cleaning vary depending on the type of the service.
+export const infoCleaningServices = `Should you need cleaning services during your stay, we stay at your disposal. The prices for cleaning vary depending on the type of the service.
 
-* Please give us a week up front notice.`
+Please give us a week up front notice.`
 
 export const infoTransfer = `* You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner:
 +385-…...`

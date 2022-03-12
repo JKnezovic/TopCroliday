@@ -7,7 +7,7 @@ const height = width * 0.6;
 
 
 
-export default function ImageSlider({images}) {
+export default function ImageSlider({images, description}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const changeDotIndicator = e => {
     let count = Math.ceil(e.nativeEvent.contentOffset.x/e.nativeEvent.layoutMeasurement.width);
@@ -20,8 +20,12 @@ export default function ImageSlider({images}) {
       horizontal 
       pagingEnabled
       onScroll={changeDotIndicator}>
-        {images.map((image, idx) => 
-            <Image key={idx} source={{uri: image.url()}} style={styles.image}/>
+        {images.map((imageObject, idx) =>
+        <View key={idx}>
+            <Text style={styles.text}>{imageObject.description}</Text>
+            <Image key={idx} source={{uri: imageObject.image.url()}} style={styles.image}/>
+
+        </View>
         )}
       </ScrollView>
       <View style={styles.dotsContainer}>
@@ -32,6 +36,17 @@ export default function ImageSlider({images}) {
   )
 }
 const styles = StyleSheet.create({
+  text: {
+    position: 'absolute',
+    top: 0,
+    elevation: 2,
+    color: 'white',
+    backgroundColor: '#092240',
+    margin: '1%',
+    paddingHorizontal: '5%',
+    textAlign: 'center',
+    borderRadius: 50
+  },
   container: {
     margin: 'auto',
     width,

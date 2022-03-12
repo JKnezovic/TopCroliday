@@ -43,24 +43,9 @@ const PreStay = () => {
 
     } catch (error) {
       
-    }
-    
-    
-
-    /* setSelectedActivities(populateSelection(queryResult));
-    setSelectedTransfer(populateSelection(transferServices));
-    setSelectedFridgeRestock(populateSelection(foodAndDrink));
-    setSelectedCleaningServices(populateSelection(cleaningServices));
-
-    let tempSelectedActivities = {};
-    queryResult.forEach(activityItem => tempSelectedActivities[activityItem.id]=false);
-    setSelectedActivities(tempSelectedActivities); */
+    } 
   }
-/* const populateSelection = (items) => {
-  let selection = {};
-  items.forEach(item => selection[item.id] = false);
-  return selection;
-} */
+
 const populateSelection = reservation => {
   let choices = reservation.get("choices");
   let tempActivities = {};
@@ -148,20 +133,16 @@ const changeSelection = (setSelection, id) => {
       setSubmitDisabled(true)
     else
     {
-      console.log(selectedActivities)
       for (key in selectedActivities)
       {
         if(selectedActivities[key] === true)
         {
-          console.log('selectedActivities', key)
           setSubmitDisabled(false);
           return 0;
         }
       }
       for (key in selectedCleaningServices)
       {
-        console.log('selectedCleaningServices')
-
         if(selectedCleaningServices[key] === true)
         {
           setSubmitDisabled(false);
@@ -170,8 +151,6 @@ const changeSelection = (setSelection, id) => {
       }
       for (key in selectedFridgeRestock)
       {
-        console.log('selectedFridgeRestock')
-
         if(selectedFridgeRestock[key] === true)
         {
           setSubmitDisabled(false);
@@ -180,8 +159,6 @@ const changeSelection = (setSelection, id) => {
       }
       for (key in selectedTransfer)
       {
-        console.log('selectedTransfer')
-
         if(selectedTransfer[key] === true)
         {
           setSubmitDisabled(false);
