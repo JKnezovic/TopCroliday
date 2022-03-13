@@ -30,14 +30,16 @@ export default function CleaningServices({changeSelection, selectedCleaningServi
 
 const styles = StyleSheet.create({
   tile: {
-    alignSelf: 'center',
     flexDirection: 'row',
+    minWidth: '80%',
     width: '80%',
     alignItems: 'center',
     backgroundColor: 'white',
     margin: 2,
     borderRadius: 40,
-    paddingHorizontal: '2%'
+    paddingLeft: '2%',
+    paddingRight: '4%',
+    paddingVertical: '5%'
 },
 tileLeft: {
   flexDirection: 'row',
@@ -49,5 +51,8 @@ iconContainer: {
 },
 icon: {
   margin: 10
-}         
+},
+container: {
+  alignItems: 'center'
+}          
 })

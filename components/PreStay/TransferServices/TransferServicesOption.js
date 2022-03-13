@@ -23,7 +23,8 @@ export default function TransferServicesOption({item, changeSelection, isSelecte
 const styles = StyleSheet.create({
   tile: {
       flexDirection: 'row',
-      width: '80%',
+      minWidth: '80%',
+      width: '85%',
       alignItems: 'center',
       backgroundColor: 'white',
       margin: 2,
@@ -35,7 +36,8 @@ const styles = StyleSheet.create({
     width: '70%'
   },
   radioButton: {
-    
+    margin: '1%',
+    padding: '1%'
   },
   iconContainer: {
     width: '30%',
@@ -46,11 +48,8 @@ const styles = StyleSheet.create({
   },
   bigText: {
     fontSize:20,
-    color:'#092240'
+    color:'#092240',
+    marginRight: '1%'
 
-  },
-  smallText: {
-    flex: 1,
-    flexWrap: 'wrap'
   }
 })

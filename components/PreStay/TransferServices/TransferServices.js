@@ -14,7 +14,7 @@ export default function TransferServices( {changeSelection, selectedTransferServ
                 isSelected={selectedTransferServices[item.id]}
                 color={color}/>)
   return (
-    <View>
+    <View style={styles.container}>
         {items}
         <View style={styles.tile}>
           <View style={styles.iconContainer}>
@@ -29,14 +29,16 @@ export default function TransferServices( {changeSelection, selectedTransferServ
 
 const styles = StyleSheet.create({
   tile: {
-    alignSelf: 'center',
     flexDirection: 'row',
-    width: '80%',
+    minWidth: '80%',
+    width: '85%',
     alignItems: 'center',
     backgroundColor: 'white',
     margin: 2,
     borderRadius: 40,
-    paddingHorizontal: '2%'
+    paddingLeft: '2%',
+    paddingRight: '4%',
+    paddingVertical: '5%'
 },
 tileLeft: {
   flexDirection: 'row',
@@ -48,5 +50,8 @@ iconContainer: {
 },
 icon: {
   margin: 10
-}         
+},
+container: {
+  alignItems: 'center'
+}        
 })

@@ -126,7 +126,8 @@ export const foodAndDrink =[
   {
     id: 1,
     name: 'Basic breakfast',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
+    description: `Oats (500g) / Chocolate spread (400g) / Marmelade (450g) / Butter (250g) / Eggs (12pcs) / Milk (2L) / Joghurt (1L) + Greek joghurt (450g) / Instant Coffee (8pcs) / Bread (2kg) / Salami + Cheese`,
+    price: '40EUR',
     iconName: 'free-breakfast',
     iconBank: 'MaterialIcons'
   
@@ -134,21 +135,32 @@ export const foodAndDrink =[
   {
     id: 2,
     name: 'Kids breakfast',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. `,
+    description: `Chocolate cereal (500g) / Pudding (8pcs) / Fruit joghurt (1L) /`,
+    price: '15EUR',
     iconName: 'child',
     iconBank: 'FontAwesome'
   },
   {
+    id: 6,
+    name: 'Juice packages',
+    description: `Coca-Cola cans (24x150ml) / Cappy limonade (2x1.25L) / 'Pipi' juice (8x0.5L) / Cedevita juice -powder (200g) / Ice tea – lemon and peach (4x1.5L)`,
+    price: '45EUR',
+    iconName: 'bottle-soda-classic',
+    iconBank: 'MaterialCommunityIcons'
+  },
+  {
     id: 3,
     name: 'Beer package',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
+    description: `40pcs of various croatian craft beer`,
+    price: '100EUR',
     iconName: 'beer',
     iconBank: 'Ionicons'
   },
   {
     id: 4,
     name: 'Wine package',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
+    description: `'Life is too short to drink bad wine'- that is why we leave this decision only up to you. Tell us what are your favourite wine and leave the rest on us.`,
+    price: 'The price depends on the type and the quantity of wine.',
     iconName: 'wine-glass-alt',
     iconBank: 'FontAwesome5'
   },

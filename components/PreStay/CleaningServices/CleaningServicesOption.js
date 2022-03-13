@@ -21,6 +21,7 @@ export default function CleaningServicesOption({item, changeSelection, isSelecte
 const styles = StyleSheet.create({
   tile: {
       flexDirection: 'row',
+      minWidth: '80%',
       width: '80%',
       alignItems: 'center',
       backgroundColor: 'white',
