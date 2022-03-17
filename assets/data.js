@@ -26,19 +26,19 @@ export const prestay= [
 
  export const mainscreen = [
     pre= {
-      uri:require('../assets/pre.jpg'),
+      uri:require('../assets/prestay.jpeg'),
       title: 'PreStay',
       desc: 'Here you can explore and pick all the top activities you would like to try and other services you may need.',
       key:5
     },
     during= {
-      uri: require('../assets/during.jpeg'),
+      uri: require('../assets/duringstay.jpg'),
       title: 'DuringStay',
       desc: 'Take a look at some sights worth exploiting, restaurants, beaches, museums and galleries worth visiting.',
       key:6
     },
     post= {
-      uri: require('../assets/post.jpg'),
+      uri: require('../assets/post2.jpg'),
       title: 'PostStay',
       desc: 'Tell us how did you like your accommodation as well as was this app any helpful to you?',
       key:7
