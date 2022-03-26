@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  StyleSheet, Text, Pressable, ImageBackground } from 'react-native';
+import {  StyleSheet, Text, Pressable, ImageBackground, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -29,9 +29,12 @@ const DuringStayTile = ({source,title,objectId,updateFavoriteList,favoriteList,s
     } style={styles.container}>
         <ImageBackground source={source} resizeMode="cover" style={styles.image}>
               { favorite ?
-                (<AntDesign onPress={()=>changeFavorite()} style={styles.icon} name="heart" size={24} color="black" />)
+                (<AntDesign onPress={()=>changeFavorite()} style={styles.icon} name="heart" size={24} color="black"  />)
                 :
-                (<AntDesign onPress={()=>changeFavorite()} style={styles.icon} name="hearto" size={24} color="black" />) 
+                (<View  > 
+                  <AntDesign  style={styles.icon} name="hearto" size={24} color="black" />
+                  <AntDesign onPress={()=>changeFavorite()}  style={styles.icon} name="heart" size={24} color="rgba(0, 0, 0, .3)"/>
+                </View>) 
               }
               <LinearGradient 
               style={styles.textBox}
@@ -65,9 +68,11 @@ const styles = StyleSheet.create({
     borderRadius:15,
   },
   icon:{
-    alignSelf:'flex-end',
-    paddingRight:'4%',
+
+    right:8,
     paddingTop:'2%',
+    padding:'2%',
+    position:'absolute'
   },
   textBox:{
     position:'absolute',

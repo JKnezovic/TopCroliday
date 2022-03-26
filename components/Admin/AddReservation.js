@@ -50,7 +50,6 @@ const AddReservation = () => {
             break;
         default: console.log("nope")
     }
-    console.log(currentDate)
   };
 
 
@@ -78,7 +77,6 @@ const AddReservation = () => {
     };
       return await Parse.Cloud.run('registerUser',params,)
       .then(async(resultObject)=> {
-        console.log(resultObject)
         Reservation.set('user',resultObject.result)
         await Reservation.save();
         Alert.alert("Successfully added");
@@ -88,23 +86,6 @@ const AddReservation = () => {
         Alert.alert("Error!", error.message);
         return false;
       });
-    
-
-
-/*     const sessionToken = Parse.User.current().getSessionToken();
-     return await Parse.User.signUp(usernameValue, passwordValue)
-      .then(async(createdUser) => {
-        Reservation.set('user',createdUser)
-        await Reservation.save();
-        Parse.User.become(sessionToken);
-        Alert.alert("Successfully added");
-        return true;
-      })
-      .catch((error) => {
-        Alert.alert("Error!", error.message);
-        return false;
-      }); */
-      
     
   };
 

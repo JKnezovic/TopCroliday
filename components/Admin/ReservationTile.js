@@ -3,7 +3,7 @@ import { Pressable, StyleSheet,Share, View, Text } from 'react-native';
 import ChoicesTile from './ChoicesTile';
 
 
-const ReservationTile = ({name,startDate, endDate, accommodation, choices, username}) => {
+const ReservationTile = ({name,startDate, endDate, accommodation, choices, username, password}) => {
   const [modalVisible, setModalVisible]= React.useState(false);
 
   const onShare = async () => {
@@ -15,8 +15,8 @@ const ReservationTile = ({name,startDate, endDate, accommodation, choices, usern
         The App helps you in designing your perfect holiday by providing you with information and services before, during and after your stay.
         In the app you will get a discount code for various 5-star activities selected by us.
         LINK:
-        USERNAME:${username}
-        PASSWORD:
+        USERNAME: ${username}
+        PASSWORD: ${password}
         `,
       });
 

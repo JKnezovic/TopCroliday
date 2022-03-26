@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, RefreshControl, ActivityIndicator, ScrollView } from 'react-native';
+import { StyleSheet, RefreshControl, ActivityIndicator, ScrollView, View, Text } from 'react-native';
 import Parse from "parse/react-native.js";
 import ReservationTile from './ReservationTile';
 
@@ -10,6 +10,8 @@ const ReservationScreens = ({route}) => {
     const { name } = route.params;
     const [reservations, setReservation] = React.useState([]);
     const [refreshing, setRefreshing] = React.useState(false);
+    const [noRows, setNoRows] = React.useState(false);
+
 
     const onRefresh = React.useCallback(() => {
       setRefreshing(true);
@@ -41,6 +43,9 @@ const ReservationScreens = ({route}) => {
     
         try {
           let result = await parseQuery.find();
+          if(result.length==0)
+          setNoRows(true)
+          else
           setReservation(result);
         } catch (error) {
           Alert.alert('Error!', error.message);
@@ -60,12 +65,25 @@ const ReservationScreens = ({route}) => {
         accommodation={value.get('accommodation').get('Name')}
         choices={value.get('choices')}
         username={value.get('user').get('username')}
+        password={value.get('user').get('key')}
 
          />) 
 
-    if(reservations.length==0)
+    if(reservations.length==0 && !noRows)
     {
       return <ActivityIndicator style={styles.loader} size="large" color="#092240" />
+    }
+    else if(reservations.length==0 && noRows){
+      return(
+      <View 
+      style={styles.noRows}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />}>
+        <Text>{"No reservations found"}</Text>
+      </View>)
     }
     else{
       return (
@@ -89,6 +107,12 @@ export default ReservationScreens;
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+
+  noRows:{
+    flex: 1,
+    justifyContent:'center',
+    alignItems:'center',
   },
 
   modalView: {
