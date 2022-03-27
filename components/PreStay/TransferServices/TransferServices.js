@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Linking } from 'react-native'
 import { transferServices, infoTransfer } from '../../../assets/data'
 import TransferServicesOption from './TransferServicesOption'
 import { FontAwesome } from '@expo/vector-icons';
@@ -20,8 +20,11 @@ export default function TransferServices( {changeSelection, selectedTransferServ
           <View style={styles.iconContainer}>
             <FontAwesome style={[styles.icon, {color: color}]} name={'info'} size={40}/>
           </View>
-        
-          <Text> {infoTransfer}</Text>
+        <View style={styles.text}>
+          <Text>{infoTransfer.description}</Text>
+          <Text onPress={()=>Linking.openURL(`tel:${infoTransfer.phoneNumber}`)}
+                style={styles.phoneNumber}>{infoTransfer.phoneNumber}</Text>
+        </View>
         </View>
     </View>
   )
@@ -53,5 +56,11 @@ icon: {
 },
 container: {
   alignItems: 'center'
-}        
+},
+text: {
+  flexDirection: 'column'
+},
+phoneNumber: {
+  color: 'blue'
+}
 })

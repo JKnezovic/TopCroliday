@@ -198,8 +198,10 @@ export const infoCleaningServices = `Should you need cleaning services during yo
 
 Please give us a week up front notice.`
 
-export const infoTransfer = `* You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner:
-+385-…...`
+export const infoTransfer = {
+  description: `* You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner:`,
+  phoneNumber: '+385 1234 567'
+}
 
 export const modalText = {
   title: `Notice !`,
