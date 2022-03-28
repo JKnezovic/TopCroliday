@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const DuringStayTile = ({source,title,objectId,updateFavoriteList,favoriteList,showFavorites}) => {
+const DuringStayTile = ({source,title,objectId,updateFavoriteList,favoriteList}) => {
   const [favorite,setFavorite] = React.useState(false);
 
   const navigation = useNavigation(); 
@@ -19,10 +19,7 @@ const DuringStayTile = ({source,title,objectId,updateFavoriteList,favoriteList,s
       setFavorite(favoriteList[objectId])
     }
   },[]);
-  if(showFavorites && !favorite){
-    return null
-  }
-  else{
+
      return (
     <Pressable onPress={() =>
       navigation.navigate('DuringStayDetails',{objectId:objectId})
@@ -46,7 +43,6 @@ const DuringStayTile = ({source,title,objectId,updateFavoriteList,favoriteList,s
         </ImageBackground>
     </Pressable>
   ); 
-  }
 
 };
 
