@@ -22,7 +22,7 @@ export default function ImageSlider({images, description}) {
       onScroll={changeDotIndicator}>
         {images.map((imageObject, idx) =>
         <View key={idx}>
-            <Text style={styles.text}>{imageObject.description}</Text>
+            {imageObject.description && <Text style={styles.text}>{imageObject.description}</Text>}
             <Image key={idx} source={{uri: imageObject.image.url()}} style={styles.image}/>
 
         </View>

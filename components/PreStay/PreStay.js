@@ -208,7 +208,8 @@ export default PreStay;
 const styles = StyleSheet.create({
   container: {
     alignItems:'center',
-    paddingBottom: '30%'
+    paddingBottom: '30%',
+    paddingHorizontal: '1%'
   },
   button: {
     position: 'absolute',

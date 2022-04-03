@@ -22,6 +22,7 @@ export default function FridgeRestock({changeSelection, selectedFridgeRestock, s
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '80%'
   }
 })
