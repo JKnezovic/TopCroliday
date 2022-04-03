@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    padding: '2%',
     borderBottomEndRadius: 15,
     borderBottomStartRadius: 15
   },

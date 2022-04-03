@@ -46,25 +46,11 @@ export default function FridgeRestockTile({item, changeSelection, isSelected, co
 }
 const styles = StyleSheet.create({
   tile: {
-  },
-  iconContainer: {
-    width: '30%',
-    alignItems: 'center'
-  },
-  icon: {
-    color: 'red',
-    margin: 10
-  },
-  textContainer: {
-    paddingRight: '1%'
-  },
-  bigText: {
-    fontSize:20,
-    color:'#092240'
+    flexDirection: 'row',
+    alignItems: 'center', 
+    backgroundColor: 'white',
+    borderRadius: 40,
+    paddingHorizontal: 10
 
-  },
-  smallText: {
-    flex: 1,
-    flexWrap: 'wrap'
   }
 })

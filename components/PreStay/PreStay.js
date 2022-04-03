@@ -103,16 +103,21 @@ const changeSelection = (setSelection, id) => {
       "fridgeRestock": fillChoice(foodAndDrink, selectedFridgeRestock),
       "cleaningServices": fillChoice(cleaningServices, selectedCleaningServices),
       "transfer": fillChoice(transferServices, selectedTransfer),
-      "activities": fillChoice(activities, selectedActivities)
+      "activities": fillChoice(activities, selectedActivities, 'activities')
     }
     return choices;
   }
-  const fillChoice = (items, selected) => {
+  const fillChoice = (items, selected, type = '') => {
     let choice = [];
     items.forEach(
       item => {
         if(selected[item.id])
-          choice.push(item);
+        {
+          type === 'activities' 
+          ? choice.push({id: item.id, name: item.get('Name')})
+          : choice.push(item)         
+          
+        }
       }
     )
       return choice;

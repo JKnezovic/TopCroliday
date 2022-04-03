@@ -183,12 +183,12 @@ export const cleaningServices = [
 export const transferServices = [
   {
     id: 1,
-    option: 'Airport to accomodation',
+    option: 'Airport to accommodation',
     iconName: 'plane-arrival'
   },
   {
     id: 2,
-    option: 'Accomodation to airport',
+    option: 'Accommodation to airport',
     iconName: 'plane-departure'
   }
 
