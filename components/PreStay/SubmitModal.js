@@ -13,17 +13,22 @@ export default function SubmitModal({isVisible, submit, setModalVisible}) {
             >
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
             <View style={styles.outerContainer}>
-                <View style={styles.innerContainer}>
-                    <Pressable onPress={()=>setModalVisible(false)}>
+                <Pressable style={styles.innerContainer} onPress={()=>{}}>
+                    <Pressable onPress={()=>setModalVisible(false)}
+                                style={styles.closeIcon}>
                         <AntDesign name="close" size={24} color="black" />
                     </Pressable>
+                    <View style={styles.content}>
+                        <View style={styles.text}>
+                            <Text style={styles.title}> {modalText.title} </Text>
+                            <Text>
+                                {modalText.description}
+                            </Text>
+                        </View>
+                        <Button small title={'I understand'} onPress={submit}/>
+                    </View>
                     
-                    <Text> {modalText.title} </Text>
-                    <Text>
-                        {modalText.description}
-                    </Text>
-                    <Button small title={'I understand'} onPress={submit}/>
-                </View>
+                </Pressable>
             </View>    
         </TouchableWithoutFeedback>
     </Modal>
@@ -40,9 +45,6 @@ const styles = StyleSheet.create({
     innerContainer: {
         height: '40%',
         width: '90%',
-        padding: 35,
-        justifyContent: 'space-around',
-        alignItems: 'center',
         backgroundColor: '#FFF',
         shadowColor: '#000',
         shadowOffset: {
@@ -56,10 +58,20 @@ const styles = StyleSheet.create({
 
     },
     title: {
-
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginBottom: '5%'
     },
-    description: {
-
+    content: {
+        alignItems: 'center',
+        padding: '10%'
+    },
+    closeIcon: {
+        flexDirection: 'row-reverse'
+    },
+    text: {
+        alignItems: 'center',
+        marginBottom: '5%'
     }
 
 })
