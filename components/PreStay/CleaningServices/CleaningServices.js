@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center', 
     backgroundColor: 'white',
-    borderRadius: 40,
+    borderRadius: 25,
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginHorizontal: 5,
@@ -50,13 +50,14 @@ const styles = StyleSheet.create({
   flex: 9
   },
 container: {
-    minWidth: '100%',
+    minWidth: '105%',
     elevation: 2,
     shadowOpacity: 0.8, 
     shadowRadius: 2, 
     shadowOffset: { height: 1, width: 1 },
     borderBottomEndRadius: 15,
     borderBottomStartRadius: 15,
-    paddingTop:2
+    paddingTop:2,
+    paddingHorizontal: '1%'
 }          
 })
