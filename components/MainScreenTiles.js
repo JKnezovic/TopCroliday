@@ -1,16 +1,25 @@
 import * as React from 'react';
-import { ImageBackground, Pressable, StyleSheet, Text } from 'react-native';
+import { ImageBackground, Pressable, StyleSheet, Text, ToastAndroid } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 
 
-const MainScreenTile = ({item}) => {
+const MainScreenTile = ({item,endDate}) => {
   const {desc, title, uri} = item;
   const navigation = useNavigation();
+  
+  const handlePress=()=>{
+    const date = new Date()
+    if(title==="PostStay" && (date.getTime() < endDate.getTime()))
+    {
+      ToastAndroid.show('Once your trip ends here you will be able to give us your feedback', ToastAndroid.LONG);
+    }
+    else navigation.navigate(title)
+  }
 
   return (
-      <Pressable style={styles.container} onPress={() =>navigation.navigate(title)}>
+      <Pressable style={styles.container} onPress={() => handlePress()}>
           <ImageBackground source={uri} resizeMode="cover" style={styles.image}>
               <LinearGradient 
               style={styles.textBox}

@@ -4,18 +4,34 @@ import DuringStayTile from './DuringStayTile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Parse from "parse/react-native.js";
 import { AntDesign } from '@expo/vector-icons';
+import ReservationContext from '../../ReservationContext';
 
 
 const DuringStay = ({navigation}) => {
   const [favoriteList,setFavoriteList] = useState({})
   const [duringStayItems,setDuringStayItems] = useState(null)
+  const [fullData,setFullData] = useState([])
   const [showFavorites,setShowFavorites] = useState(false)
+  const reservation = React.useContext(ReservationContext)
 
   const favRef = useRef(null);
   favRef.current = favoriteList;
+  const fulldataRef = useRef(null);
+  fulldataRef.current = fullData;
 
   const updateFavoriteList=(id,isFavorite)=>{
     setFavoriteList(favoriteList=>{return {...favoriteList,[id]:isFavorite}})
+  }
+
+  const handleFavorite = () => {
+    if(showFavorites){
+      setDuringStayItems(fullData);
+    }
+    else{
+      const filteredData =  fulldataRef.current.filter(item => (favRef.current.hasOwnProperty(item.id) && favRef.current[item.id]===true))
+      setDuringStayItems(filteredData);
+    }
+    setShowFavorites(!showFavorites)
   }
 
   const storeFavoriteList = async (list) => {
@@ -39,16 +55,12 @@ const DuringStay = ({navigation}) => {
   }
 
   const getActivities = async function() {
-    const parseQuery = new Parse.Query('Reservation');
     const parseDuring = new Parse.Query('DuringStay');
-    const currentUser = await Parse.User.currentAsync();
-    parseQuery.equalTo('user',currentUser);
-
     try {
-      let reservations = await parseQuery.first();
-      parseDuring.equalTo('locations',reservations.get("location"));
+      parseDuring.equalTo('locations',reservation.get("location"));
       let duringStay = await parseDuring.find();
       setDuringStayItems(duringStay);
+      setFullData(duringStay);
     } catch (error) {
       console.log('Error!', error.message);
     }
@@ -68,7 +80,7 @@ const DuringStay = ({navigation}) => {
   useLayoutEffect(() => {
       navigation.setOptions({
         headerRight: () => (
-          <AntDesign onPress={()=>setShowFavorites(!showFavorites)} name={showFavorites?"heart":"hearto"} size={24} color={showFavorites?"red":"white"} />
+          <AntDesign onPress={()=>handleFavorite()} name={showFavorites?"heart":"hearto"} size={24} color={showFavorites?"red":"white"} />
         ),
       });
   }, [navigation,showFavorites]);
@@ -79,6 +91,7 @@ const DuringStay = ({navigation}) => {
 
     return ()=> storeFavoriteList(favRef.current)
   },[]);
+
 
   if(!duringStayItems){
     return <ActivityIndicator style={styles.loader} size="large" color="#092240" />

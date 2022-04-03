@@ -4,25 +4,14 @@ import MainScreenTile from './MainScreenTiles';
 import Parse from "parse/react-native.js";
 import {mainscreen} from "../assets/data"
 import {useNavigation} from '@react-navigation/native';
+import ReservationContext from '../ReservationContext';
 
 
 
 const MainScreen = () => {
   const navigation = useNavigation();
-  const [reservation, setReservation] = React.useState(null);
-  const getReservation = async function () {
-    const parseQuery = new Parse.Query('Reservation');
-    const currentUser = await Parse.User.currentAsync();
-    parseQuery.equalTo('user',currentUser);
-    parseQuery.include('accommodation');
+  const reservation = React.useContext(ReservationContext)
 
-    try {
-      let reservations = await parseQuery.first();
-      setReservation(reservations);
-    } catch (error) {
-      Alert.alert('Error!', error.message);
-    }
-  };
 
   const doUserLogOut = async function () {
     return await Parse.User.logOut()
@@ -53,7 +42,6 @@ const MainScreen = () => {
   };
 
   React.useEffect(() => {
-    getReservation()
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       backAction
@@ -63,7 +51,7 @@ const MainScreen = () => {
   }, []);
 
   const items=mainscreen.map((value)=>
-  <MainScreenTile item={value} key={value.key} />) 
+  <MainScreenTile item={value} key={value.key} endDate={reservation.get('endDate')} />) 
 
   return (
       <View style={styles.container}>

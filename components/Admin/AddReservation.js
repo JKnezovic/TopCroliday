@@ -50,7 +50,6 @@ const AddReservation = () => {
             break;
         default: console.log("nope")
     }
-    console.log(currentDate)
   };
 
 
@@ -71,12 +70,15 @@ const AddReservation = () => {
     Reservation.set('name',nameValue);
 
 
-    const sessionToken = Parse.User.current().getSessionToken();
-     return await Parse.User.signUp(usernameValue, passwordValue)
-      .then(async(createdUser) => {
-        Reservation.set('user',createdUser)
+
+    const params = {
+      username: usernameValue,
+      password: passwordValue
+    };
+      return await Parse.Cloud.run('registerUser',params,)
+      .then(async(resultObject)=> {
+        Reservation.set('user',resultObject.result)
         await Reservation.save();
-        Parse.User.become(sessionToken);
         Alert.alert("Successfully added");
         return true;
       })
@@ -84,7 +86,6 @@ const AddReservation = () => {
         Alert.alert("Error!", error.message);
         return false;
       });
-      
     
   };
 
@@ -125,7 +126,7 @@ const AddReservation = () => {
       </View>
       {show && (
         <DateTimePicker
-          value={new Date()}
+          value={startDate}
           mode={mode}
           is24Hour={true}
           display="default"

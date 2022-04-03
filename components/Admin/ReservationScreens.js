@@ -1,11 +1,23 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, RefreshControl, ActivityIndicator, ScrollView, View, Text } from 'react-native';
 import Parse from "parse/react-native.js";
 import ReservationTile from './ReservationTile';
+
+
+
 
 const ReservationScreens = ({route}) => {
     const { name } = route.params;
     const [reservations, setReservation] = React.useState([]);
+    const [refreshing, setRefreshing] = React.useState(false);
+    const [noRows, setNoRows] = React.useState(false);
+
+
+    const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+      getReservations()
+      setRefreshing(false)
+    }, []);
 
     const getReservations = async function () {
         const parseQuery = new Parse.Query('Reservation');
@@ -31,8 +43,10 @@ const ReservationScreens = ({route}) => {
     
         try {
           let result = await parseQuery.find();
+          if(result.length==0)
+          setNoRows(true)
+          else
           setReservation(result);
-          console.log(result)
         } catch (error) {
           Alert.alert('Error!', error.message);
         }
@@ -43,17 +57,46 @@ const ReservationScreens = ({route}) => {
     }, [name]);
 
     const reservation=reservations.map((value)=>
-      <ReservationTile name={value.get("name")} startDate={value.get('startDate')} endDate={value.get('endDate')} key={value.id} />) 
+      <ReservationTile 
+        name={value.get("name")} 
+        startDate={value.get('startDate')} 
+        endDate={value.get('endDate')} 
+        key={value.id} 
+        accommodation={value.get('accommodation').get('Name')}
+        choices={value.get('choices')}
+        username={value.get('user').get('username')}
+        password={value.get('user').get('key')}
 
-    if(reservations.length==0)
+         />) 
+
+    if(reservations.length==0 && !noRows)
     {
       return <ActivityIndicator style={styles.loader} size="large" color="#092240" />
     }
+    else if(reservations.length==0 && noRows){
+      return(
+      <View 
+      style={styles.noRows}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />}>
+        <Text>{"No reservations found"}</Text>
+      </View>)
+    }
     else{
       return (
-          <View style={styles.container}>
+          <ScrollView 
+          style={styles.container} 
+          contentContainerStyle={{alignItems:'center'}}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />}>
           {reservation}
-        </View>
+        </ScrollView>
       );
     }
 
@@ -63,6 +106,54 @@ export default ReservationScreens;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+
+  noRows:{
     flex: 1,
+    justifyContent:'center',
+    alignItems:'center',
+  },
+
+  modalView: {
+    flex:4/5,
+    marginTop: '20%',
+    backgroundColor: "white",
+    borderRadius: 20,
+    //padding: 35,
+    width:'95%',
+    alignSelf:'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    width:'100%',
+    backgroundColor:'#092240',
+    overflow:'hidden',
+    color:'white',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+
   }
 })
