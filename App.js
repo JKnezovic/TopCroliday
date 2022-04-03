@@ -44,6 +44,8 @@ const Stack = createNativeStackNavigator();
 
     const getReservation = async () => {
       const reservationQuery = new Parse.Query('Reservation');
+      reservationQuery.include('accommodation');
+      reservationQuery.include('location');
       const currentUser = await Parse.User.currentAsync();
         if(currentUser){
           reservationQuery.equalTo("user", currentUser);
