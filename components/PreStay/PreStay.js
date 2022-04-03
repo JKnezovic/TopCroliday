@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems:'center',
     paddingBottom: '30%',
-    paddingHorizontal: '1%'
+    paddingHorizontal: 10
   },
   button: {
     position: 'absolute',

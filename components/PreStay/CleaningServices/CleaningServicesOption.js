@@ -10,7 +10,7 @@ export default function CleaningServicesOption({item, changeSelection, isSelecte
         <MaterialIcons style={[styles.icon, {color: color}]} name={item.iconName} size={40}/>
       </View>
         
-          <Text style={styles.bigText}>{item.option}</Text>
+          <Text style={styles.textContainer}>{item.option}</Text>
           
       
       
@@ -20,36 +20,27 @@ export default function CleaningServicesOption({item, changeSelection, isSelecte
 }
 const styles = StyleSheet.create({
   tile: {
-      flexDirection: 'row',
-      minWidth: '80%',
-      width: '80%',
-      alignItems: 'center',
-      backgroundColor: 'white',
-      margin: 2,
-      borderRadius: 40,
-      paddingHorizontal: '2%'
-  },
-  tileLeft: {
     flexDirection: 'row',
-    width: '70%'
-  },
-  radioButton: {
-    
-  },
-  iconContainer: {
-    width: '30%',
-    alignItems: 'center'
-  },
-  icon: {
-    margin: 10
-  },
-  bigText: {
-    fontSize:20,
-    color:'#092240'
+    alignItems: 'center', 
+    backgroundColor: 'white',
+    borderRadius: 40,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 2 
 
   },
-  smallText: {
+  iconContainer: {
+    flex: 2,
+    padding: 5,
+    alignItems: 'center',
+    marginRight: 5
+  },
+  textContainer: {
+    flex: 8
+  },
+  radioView: {
     flex: 1,
-    flexWrap: 'wrap'
+    marginLeft: 5
   }
 })

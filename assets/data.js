@@ -45,83 +45,7 @@ export const prestay= [
     }
   ]
 
-  export const test = [
-    {
-      uri:require('../assets/pre.jpg'),
-      title: 'Zip Line',
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba'
-    },
-    {
-      uri: require('../assets/during.jpeg'),
-      title: 'Blue Cave',
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    },
-    {
-      uri: require('../assets/post.jpg'),
-      title: 'Rafting',
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    },
-    {
-      uri:require('../assets/pre.jpg'),
-      title: 'Zip Line',
-      id: 'bd7acbea-c111-46c2-aed5-3ad53abb28ba'
-    },
-    {
-      uri: require('../assets/during.jpeg'),
-      title: 'Blue Cave',
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    },
-    {
-      uri:require('../assets/pre.jpg'),
-      title: 'Zip Line',
-      id: 'bd7acbea-c8b1-46c2-aed5-3ad53abb28ba'
-    },
-    {
-      uri: require('../assets/during.jpeg'),
-      title: 'Blue Cave',
-      id: '3ac68afc-c705-48d3-a4f8-fbd91aa97f63',
-    },
-    {
-      uri: require('../assets/post.jpg'),
-      title: 'Rafting',
-      id: '5869450f-3da1-471f-bd96-145571e29d72',
-    },
-    {
-      uri:require('../assets/pre.jpg'),
-      title: 'Zip Line',
-      id: 'bd7asbea-c1b1-46c2-aed5-3ad53abb28ba'
-    },
-    {
-      uri: require('../assets/during.jpeg'),
-      title: 'Blue Cave',
-      id: '3ac6safc-c605-48d3-a4f8-fbd91aa97f63',
-    },
-    {
-      uri:require('../assets/pre.jpg'),
-      title: 'Zip Line',
-      id: 'bd7acbea-c1b1-i6c2-aed5-3ad53abb28ba'
-    },
-    {
-      uri: require('../assets/during.jpeg'),
-      title: 'Blue Cave',
-      id: '3ac68afc-c605-4ld3-a4f8-fbd91aa97f63',
-    },
-    {
-      uri: require('../assets/post.jpg'),
-      title: 'Rafting',
-      id: '58694a0f-3da1-4<1f-bd96-145571e29d72',
-    },
-    {
-      uri:require('../assets/pre.jpg'),
-      title: 'Zip Line',
-      id: 'bd7acbea-c1b1-46w2-aed5-3ad53abb28ba'
-    },
-    {
-      uri: require('../assets/during.jpeg'),
-      title: 'Blue Cave',
-      id: '3ac68afc-c605-48v3-a4f8-fbd91aa97f63',
-    },
-  ]
+  
 export const foodAndDrink =[
   {
     id: 1,
@@ -163,13 +87,6 @@ export const foodAndDrink =[
     price: 'The price depends on the type and the quantity of wine.',
     iconName: 'wine-glass-alt',
     iconBank: 'FontAwesome5'
-  },
-  {
-    id: 5,
-    name: 'Kids package',
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
-    iconName: 'child-care',
-    iconBank: 'MaterialIcons'
   }
 ]
 export const cleaningServices = [

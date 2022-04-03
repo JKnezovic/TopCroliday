@@ -21,7 +21,7 @@ export default function CleaningServices({changeSelection, selectedCleaningServi
             <FontAwesome style={[styles.icon, {color: color}]} name={'info'} size={40}/>
           </View>
         
-          <Text> {infoCleaningServices}</Text>
+          <Text style={styles.text}> {infoCleaningServices}</Text>
         </View>
         
     </View>
@@ -31,28 +31,32 @@ export default function CleaningServices({changeSelection, selectedCleaningServi
 const styles = StyleSheet.create({
   tile: {
     flexDirection: 'row',
-    minWidth: '80%',
-    width: '80%',
-    alignItems: 'center',
+    alignItems: 'center', 
     backgroundColor: 'white',
-    margin: 2,
     borderRadius: 40,
-    paddingLeft: '2%',
-    paddingRight: '4%',
-    paddingVertical: '5%'
-},
-tileLeft: {
-  flexDirection: 'row',
-  width: '70%'
-},
-iconContainer: {
-  width: '30%',
-  alignItems: 'center'
-},
-icon: {
-  margin: 10
-},
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 2 
+  
+  },
+  iconContainer: {
+    flex: 2,
+    padding: 5,
+    alignItems: 'center',
+    marginRight: 5
+  },
+  text: {
+  flex: 9
+  },
 container: {
-  alignItems: 'center'
+    minWidth: '100%',
+    elevation: 2,
+    shadowOpacity: 0.8, 
+    shadowRadius: 2, 
+    shadowOffset: { height: 1, width: 1 },
+    borderBottomEndRadius: 15,
+    borderBottomStartRadius: 15,
+    paddingTop:2
 }          
 })

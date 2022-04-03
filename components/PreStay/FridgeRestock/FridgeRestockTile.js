@@ -39,8 +39,11 @@ export default function FridgeRestockTile({item, changeSelection, isSelected, co
           <Text style={styles.smallText}>{showPreview(item.description)}</Text>
         </View>
       
-      
+      <View style={styles.radioView}>
       <RadioButton style={styles.radioButton} changeSelection={changeSelection} selected={isSelected}/>
+
+      </View>
+     
     </Pressable>
   )
 }
@@ -50,7 +53,23 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     backgroundColor: 'white',
     borderRadius: 40,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 2 
 
+  },
+  iconContainer: {
+    flex: 2,
+    padding: 5,
+    alignItems: 'center',
+    marginRight: 5
+  },
+  textContainer: {
+    flex: 8
+  },
+  radioView: {
+    flex: 1,
+    marginLeft: 5
   }
 })

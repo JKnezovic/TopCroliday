@@ -12,44 +12,38 @@ export default function TransferServicesOption({item, changeSelection, isSelecte
         <FontAwesome5 style={[styles.icon, {color: color}]} name={item.iconName} size={40}/>
       </View>
         
-          <Text style={styles.bigText}>{item.option}</Text>
+      <Text style={styles.textContainer}>{item.option}</Text>
           
+      <View style={styles.radioView}>
+        <RadioButton style={styles.radioButton} changeSelection={changeSelection} selected={isSelected}/>
+      </View>
       
-      
-      <RadioButton style={styles.radioButton} changeSelection={changeSelection} selected={isSelected}/>
     </View>
   )
 }
 const styles = StyleSheet.create({
   tile: {
-      flexDirection: 'row',
-      minWidth: '80%',
-      width: '85%',
-      alignItems: 'center',
-      backgroundColor: 'white',
-      margin: 2,
-      borderRadius: 40,
-      paddingHorizontal: '2%'
-  },
-  tileLeft: {
     flexDirection: 'row',
-    width: '70%'
-  },
-  radioButton: {
-    margin: '1%',
-    padding: '1%'
+    alignItems: 'center', 
+    backgroundColor: 'white',
+    borderRadius: 40,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 2 
+
   },
   iconContainer: {
-    width: '30%',
-    alignItems: 'center'
+    flex: 2,
+    padding: 5,
+    alignItems: 'center',
+    marginRight: 5
   },
-  icon: {
-    margin: 10
+  textContainer: {
+    flex: 8
   },
-  bigText: {
-    fontSize:20,
-    color:'#092240',
-    marginRight: '1%'
-
+  radioView: {
+    flex: 1,
+    marginLeft: 5
   }
 })
