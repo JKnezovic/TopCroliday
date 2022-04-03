@@ -6,7 +6,7 @@ const ChoicesTile = ({color,name, data}) => {
     const items=data?.map((value,key)=>
     <Text
       key={key} 
-       >{'\u2022'+value?.option}</Text>) 
+       >{'\u2022'+(value.option?value.option:value.name)}</Text>) 
   return (
    <View style={styles.tile}>
         <View style={[styles.divider,{backgroundColor:color}]}/>
