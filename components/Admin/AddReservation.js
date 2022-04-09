@@ -170,6 +170,7 @@ const AddReservation = () => {
         value={password}
         placeholder={"Password"}
         secureTextEntry
+        autoCapitalize={'none'}
         onChangeText={(text) => setPassword(text)}
       />
       </View>

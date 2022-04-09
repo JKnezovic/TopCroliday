@@ -41,19 +41,18 @@ const PreStayTile = ({item, isCollapsed, collapseItem, activities, changeSelecti
   return (
     <>
       <Pressable style={{width: '100%'}} onPress={()=> collapseItem(name)}>
-      <View style={styles.tile}>
-        <View style={{height: '100%',width:'30%', backgroundColor: color, borderRadius:25, alignItems:'center',
-             justifyContent:'center'}}>
-          <Ionicons style={styles.iconBig} name={iconName} size={60}/>
-        </View>
+        <View style={styles.tile}>
+          <View style={{width:'30%', backgroundColor: color, borderRadius:25, alignItems:'center',paddingVertical:18,
+              justifyContent:'center'}}>
+            <Ionicons style={styles.iconBig} name={iconName} size={60}/>
+          </View>
           <Text style={{fontSize:24,color:'#092240'}}>{name}</Text>
           <AntDesign name={isCollapsed ? "up" : "down"} size={30} color="#092240" />
-      </View>
-      </Pressable>
-        <View style={{marginHorizontal: '6%', alignItems: 'center'}}>
-          {isCollapsed && renderSwitch(name, color)}
         </View>
-        
+          <View style={{alignItems: 'center'}}>
+            {isCollapsed && renderSwitch(name, color)}
+          </View>
+      </Pressable>
     </>
       
   );
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     display: 'flex', 
     flexDirection: 'row', 
     alignItems: 'center', 
-    height: 100, 
+
     justifyContent: 'space-between',
     borderRadius:25,
     backgroundColor:'white',

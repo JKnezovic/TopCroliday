@@ -35,7 +35,7 @@ const PostStayTile = ({number,children}) => {
                 <Text style={styles.number}>{number}</Text>
                 {children}
           </View>
-          {number===3 && 
+          {number===2 && 
           <View>
           <View style={styles.textArea}>
             <TextInput 

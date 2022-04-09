@@ -75,15 +75,15 @@ const ReservationScreens = ({route}) => {
     }
     else if(reservations.length==0 && noRows){
       return(
-      <View 
-      style={styles.noRows}
+      <ScrollView 
+      contentContainerStyle={styles.noRows}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
           onRefresh={onRefresh}
         />}>
         <Text>{"No reservations found"}</Text>
-      </View>)
+      </ScrollView>)
     }
     else{
       return (

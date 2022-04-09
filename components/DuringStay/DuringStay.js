@@ -80,7 +80,7 @@ const DuringStay = ({navigation}) => {
   useLayoutEffect(() => {
       navigation.setOptions({
         headerRight: () => (
-          <AntDesign onPress={()=>handleFavorite()} name={showFavorites?"heart":"hearto"} size={24} color={showFavorites?"red":"white"} />
+          <AntDesign onPress={()=>handleFavorite()} name={showFavorites?"heart":"hearto"} size={24} color={showFavorites?"#c99a00st":"white"} />
         ),
       });
   }, [navigation,showFavorites]);

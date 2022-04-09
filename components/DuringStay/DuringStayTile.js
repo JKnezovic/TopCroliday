@@ -26,11 +26,11 @@ const DuringStayTile = ({source,title,objectId,updateFavoriteList,favoriteList})
     } style={styles.container}>
         <ImageBackground source={source} resizeMode="cover" style={styles.image}>
               { favorite ?
-                (<AntDesign onPress={()=>changeFavorite()} style={styles.icon} name="heart" size={24} color="black"  />)
+                (<AntDesign onPress={()=>changeFavorite()} style={styles.icon} name="heart" size={24} color="#c99a00"  />)
                 :
                 (<View  > 
-                  <AntDesign  style={styles.icon} name="hearto" size={24} color="black" />
-                  <AntDesign onPress={()=>changeFavorite()}  style={styles.icon} name="heart" size={24} color="rgba(0, 0, 0, .3)"/>
+                  <AntDesign  style={styles.icon} name="hearto" size={24} color="#c99a00" />
+                  <AntDesign onPress={()=>changeFavorite()}  style={styles.icon} name="heart" size={24} color="rgba(0, 0, 0, .4)"/>
                 </View>) 
               }
               <LinearGradient 

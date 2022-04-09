@@ -13,14 +13,10 @@ export default function FridgeRestockModal({isVisible, setModalVisible, title, d
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
             <View style={styles.outerContainer}>
                 <Pressable style={styles.innerContainer} onPress={()=>{}}>
-                    <Pressable onPress={()=>setModalVisible(false)}
-                                style={styles.closeIcon}>
-                        <AntDesign name="close" size={24} color="black" />
-                    </Pressable>
                     <View style={styles.content}>
                         <View style={styles.text}>
                             <Text style={styles.title}> {title} </Text>
-                            <Text>
+                            <Text style={{paddingBottom:'5%'}}>
                                 {description}
                             </Text>
                             <Text><Text style={styles.price}>Price: </Text>{price}</Text>
@@ -44,7 +40,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)'
     },
     innerContainer: {
-        height: '40%',
         width: '90%',
         backgroundColor: '#FFF',
         shadowColor: '#000',
@@ -55,7 +50,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        borderRadius: 10
+        borderRadius: 10,
+        justifyContent: 'center', 
+        alignItems: 'center',
 
     },
     title: {
@@ -66,9 +63,6 @@ const styles = StyleSheet.create({
     content: {
         alignItems: 'center',
         padding: '10%'
-    },
-    closeIcon: {
-        flexDirection: 'row-reverse'
     },
     text: {
         alignItems: 'center',

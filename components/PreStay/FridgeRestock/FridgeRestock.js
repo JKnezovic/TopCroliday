@@ -22,14 +22,11 @@ export default function FridgeRestock({changeSelection, selectedFridgeRestock, s
 
 const styles = StyleSheet.create({
   container: {
-    minWidth: '105%',
-    elevation: 2,
-    shadowOpacity: 0.8, 
-    shadowRadius: 2, 
-    shadowOffset: { height: 1, width: 1 },
+    minWidth: '100%',
     borderBottomEndRadius: 15,
     borderBottomStartRadius: 15,
     paddingTop:2,
-    paddingHorizontal: '1%'
+    paddingHorizontal: '1%',
+    paddingBottom:5
   }
 })
