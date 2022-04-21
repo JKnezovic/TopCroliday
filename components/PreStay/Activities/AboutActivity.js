@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {  View, StyleSheet, Text, ScrollView, ActivityIndicator} from 'react-native';
+import {  View, StyleSheet, Text, ScrollView, ActivityIndicator,Linking} from 'react-native';
 import ImageSlider from './ImageSlider';
 import Parse from "parse/react-native.js";
 
@@ -7,6 +7,8 @@ import Parse from "parse/react-native.js";
 export default function AboutActivity({route}) {
     const [activity, setActivity] = useState(null);
     const [images, setImages] = useState([])
+    const [contact,setContact] = useState([])
+
     useEffect(()=>{
         getActivity(route.params.activityId);
     }, [])
@@ -24,6 +26,7 @@ export default function AboutActivity({route}) {
           )
           setImages(tempImages)
           setActivity(joinedResults[0].get('activityPointer'))
+          setContact(joinedResults[0].get('activityPointer').get('contact').split(":"))
           
         } catch (error) {
           console.log('Error!', error.message);
@@ -38,9 +41,27 @@ export default function AboutActivity({route}) {
           <ScrollView style={styles.scrollView}>
           <Text style={styles.title}> {activity.get('Name')}
               </Text>
+          {activity.get('Note')?.includes("DISCOUNT") &&<Text style={{width:'90%',alignSelf:'center'}}>When booking this activity be sure to use our:</Text>}
+          <Text style={{fontWeight:"bold",fontSize:18,width:'90%',alignSelf:'center',paddingBottom:"8%",color:'black'}}>{activity.get('Note')}</Text>
           <Text style={styles.description}>
               {activity.get('description')}
           </Text>
+
+        <View style={[styles.divider,{backgroundColor:'lightgrey'}]}/>
+
+
+           {activity.get('contact') && <Text style={[styles.text,{paddingTop:"5%",fontSize:18}]}>
+            {"Contact "+contact[0]+":"}
+          </Text>}
+
+          {contact[1]?.includes('@')?
+          <Text onPress={()=>Linking.openURL(`mailto:${contact[1]}`)} selectable={true} style={[styles.text,{paddingBottom:100,fontSize:18,color:'blue'}]}>
+            {contact[1]}
+          </Text>:
+          <Text onPress={()=>Linking.openURL(`tel:${contact[1]}`)} selectable={true} style={[styles.text,{paddingBottom:100,fontSize:18,color:'blue'}]}>
+            {contact[1]}
+          </Text> }
+
           </ScrollView>}
           
       </View>
@@ -54,7 +75,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1
-
+  },
+  divider:{
+    width:'90%',
+    height:2,
+    alignSelf:'center',
   },
   scrollView: {
     flex: 1
@@ -70,6 +95,10 @@ const styles = StyleSheet.create({
     width:"90%",
     alignSelf:'center',
     lineHeight:20
+  },
+  text:{
+    width:"90%",
+    alignSelf:'center',
   },
   loader:{
     flex:1,
