@@ -13,6 +13,7 @@ import DuringStayDetails from "./components/DuringStay/DuringStayDetails";
 import ReservationContext from "./ReservationContext"
 import AboutActivity from './components/PreStay/Activities/AboutActivity';
 import Admin from "./components/Admin/AdminScreen";
+import { StatusBar } from 'expo-status-bar';
 
 
 Parse.setAsyncStorage(AsyncStorage);
@@ -68,6 +69,7 @@ const Stack = createNativeStackNavigator();
     
   return (
       <ReservationContext.Provider value={reservation}>
+        <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator  
         screenOptions={style}

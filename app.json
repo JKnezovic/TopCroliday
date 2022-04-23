@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "primaryColor": "#092240",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,8 +23,11 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#092240"
+      },
+      "permissions":[],
+      "versionCode":1,
+      "package":"com.eondevelopers.topcroliday"
     },
     "web": {
       "favicon": "./assets/favicon.png"

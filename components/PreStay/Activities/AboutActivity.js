@@ -26,7 +26,8 @@ export default function AboutActivity({route}) {
           )
           setImages(tempImages)
           setActivity(joinedResults[0].get('activityPointer'))
-          setContact(joinedResults[0].get('activityPointer').get('contact').split(":"))
+          if(joinedResults[0].get('activityPointer').get('contact'))
+            setContact(joinedResults[0].get('activityPointer').get('contact').split(":"))
           
         } catch (error) {
           console.log('Error!', error.message);
