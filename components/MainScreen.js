@@ -29,7 +29,7 @@ const MainScreen = () => {
 
   const backAction = () => {
     if (navigation.isFocused()) {
-    Alert.alert("Hold on!", "Are you sure you want to go back?", [
+    Alert.alert("Hold on!", "Are you sure you want to exit?", [
       {
         text: "Cancel",
         onPress: () => null,
