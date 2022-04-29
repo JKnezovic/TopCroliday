@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { View,Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import {Alert, View,Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import Parse from "parse/react-native.js";
 import ImageSlider from '../PreStay/Activities/ImageSlider';
 
@@ -24,9 +24,13 @@ const DuringStayDetails = ({route}) => {
         )
         setImages(tempImages)
         setActivity(joinedResults[0].get('duringStayPointer'))
+        return true
         
       } catch (error) {
         console.log('Error!', error.message);
+        Alert.alert('Error!', "Check your internet connection");
+        return false
+
       };
     }
 

@@ -1,5 +1,5 @@
 import React, { useEffect,useState,useRef, useLayoutEffect } from 'react';
-import { View, StyleSheet, FlatList,ActivityIndicator } from 'react-native';
+import {Alert, View, StyleSheet, FlatList,ActivityIndicator } from 'react-native';
 import DuringStayTile from './DuringStayTile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Parse from "parse/react-native.js";
@@ -13,6 +13,8 @@ const DuringStay = ({navigation}) => {
   const [fullData,setFullData] = useState([])
   const [showFavorites,setShowFavorites] = useState(false)
   const reservation = React.useContext(ReservationContext)
+  const [isLoading, setIsLoading] = useState(true);
+
 
   const favRef = useRef(null);
   favRef.current = favoriteList;
@@ -61,20 +63,16 @@ const DuringStay = ({navigation}) => {
       let duringStay = await parseDuring.find();
       setDuringStayItems(duringStay);
       setFullData(duringStay);
+      setIsLoading(false)
+      return true
     } catch (error) {
+      setIsLoading(false)
       console.log('Error!', error.message);
+      Alert.alert('Error!', "Check your internet connection");
+      return false
+      
     }
 
-  }
-
-  const clearAll = async () => {
-    try {
-      await AsyncStorage.clear()
-    } catch(e) {
-      // clear error
-    }
-  
-    console.log('Done.')
   }
 
   useLayoutEffect(() => {
@@ -93,7 +91,7 @@ const DuringStay = ({navigation}) => {
   },[]);
 
 
-  if(!duringStayItems){
+  if(isLoading){
     return <ActivityIndicator style={styles.loader} size="large" color="#092240" />
 }
 else{

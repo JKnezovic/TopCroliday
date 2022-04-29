@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { StyleSheet, View, ScrollView, ToastAndroid} from 'react-native';
+import {Alert, StyleSheet, View, ScrollView, ToastAndroid} from 'react-native';
 import PreStayTile from './PreStayTile';
 import Button from '../Button';
 import {prestay, foodAndDrink, transferServices, cleaningServices} from '../../assets/data';
@@ -40,9 +40,11 @@ const PreStay = () => {
     try {
       let queryResult = await activitiesQuery.find();
       setActivities(queryResult)
+      return true
 
     } catch (error) {
-      
+      Alert.alert('Error!', "Check your internet connection");
+      return false
     } 
   }
 

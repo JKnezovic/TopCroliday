@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {  View, StyleSheet, Text, ScrollView, ActivityIndicator,Linking} from 'react-native';
+import { Alert, View, StyleSheet, Text, ScrollView, ActivityIndicator,Linking} from 'react-native';
 import ImageSlider from './ImageSlider';
 import Parse from "parse/react-native.js";
 
@@ -28,9 +28,12 @@ export default function AboutActivity({route}) {
           setActivity(joinedResults[0].get('activityPointer'))
           if(joinedResults[0].get('activityPointer').get('contact'))
             setContact(joinedResults[0].get('activityPointer').get('contact').split(":"))
+          return true
           
         } catch (error) {
           console.log('Error!', error.message);
+          Alert.alert('Error!', "Check your internet connection");
+          return false
         };
       }
   if(activity && images)

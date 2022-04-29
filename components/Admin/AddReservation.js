@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Profiler } from "react";
-import { Alert, Button as RNButton, StyleSheet, TextInput, View, Text,ScrollView } from "react-native";
+import {ActivityIndicator, Alert, Button as RNButton, StyleSheet, TextInput, View, Text,ScrollView } from "react-native";
 import Parse from "parse/react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Picker} from '@react-native-picker/picker';
@@ -17,6 +17,8 @@ const AddReservation = () => {
   const [selectedLocation, setSelectedLocation] = useState();
   const [accommodations, setAccommodations] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const QueryObjects= async function () {
     const locationQuery = new Parse.Query('Location');
@@ -54,6 +56,7 @@ const AddReservation = () => {
 
 
   const doSubmit = async function () {
+    setIsLoading(true)
     const usernameValue = username;
     const passwordValue = password;
     const nameValue = reservationName;
@@ -80,9 +83,11 @@ const AddReservation = () => {
         Reservation.set('user',resultObject.result)
         await Reservation.save();
         Alert.alert("Successfully added");
+        setIsLoading(false)
         return true;
       })
       .catch((error) => {
+        setIsLoading(false)
         Alert.alert("Error!", error.message);
         return false;
       });
@@ -106,6 +111,10 @@ const AddReservation = () => {
     QueryObjects()
   },[])
 
+  if(isLoading)
+      return   <View style={{backgroundColor:'white',opacity:0.6,position:'absolute',height:'100%',width:'100%',justifyContent:'center',zIndex:100}}><ActivityIndicator size="large" color="#092240" style={{alignSelf:'center'}}/></View>
+        
+  else
   return (
     <ScrollView style={styles.container}>
         <View style={{flexDirection:'row', marginTop:20,backgroundColor:'white', paddingVertical:5,alignItems:'center'}}>
