@@ -178,7 +178,7 @@ const changeSelection = (setSelection, id) => {
   }
  
  const items = prestay.map(value =>{
-  if(accommodationType !== 'Villa' && value.name === 'Food and drink')
+  if(accommodationType !== 'Villa' && (value.name === 'Food and drink' || value.name === 'Cleaning Services'))
     return null;
   else
     return <PreStayTile item={value} 

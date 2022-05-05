@@ -2,7 +2,7 @@
   "expo": {
     "name": "TopCroliday",
     "slug": "TopCroliday",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "primaryColor": "#092240",
@@ -26,7 +26,7 @@
         "backgroundColor": "#092240"
       },
       "permissions":[],
-      "versionCode":4,
+      "versionCode":5,
       "package":"com.eondevelopers.topcroliday"
     },
     "web": {

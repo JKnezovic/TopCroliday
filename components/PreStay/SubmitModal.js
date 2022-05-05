@@ -11,7 +11,7 @@ export default function SubmitModal({isVisible, submit, setModalVisible}) {
             animationType={'fade'}
             transparent={true}
             >
-        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+        <TouchableWithoutFeedback>
             <View style={styles.outerContainer}>
                 <Pressable style={styles.innerContainer} onPress={()=>{}}>
                     <Pressable onPress={()=>setModalVisible(false)}
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)'
     },
     innerContainer: {
-        height: '40%',
+        minHeight: '40%',
         width: '90%',
         backgroundColor: '#FFF',
         shadowColor: '#000',
