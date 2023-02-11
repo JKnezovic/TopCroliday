@@ -25,7 +25,9 @@ export default function FridgeRestockModal({
             <View style={styles.content}>
               <View style={styles.text}>
                 <Text style={styles.title}> {title} </Text>
-                <Text style={{ paddingBottom: "5%" }}>{description}</Text>
+                <Text style={{ paddingBottom: "5%", textAlign: "center" }}>
+                  {description.replace(/\/ /g, "\n")}
+                </Text>
                 <Text>
                   <Text style={styles.price}>Price: </Text>
                   {price}

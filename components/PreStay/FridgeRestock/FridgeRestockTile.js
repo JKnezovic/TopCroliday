@@ -66,7 +66,10 @@ export default function FridgeRestockTile({
 }
 const styles = StyleSheet.create({
   bigText: {
-    fontStyle: "bold",
+    fontWeight: "500",
+  },
+  smallText: {
+    color: "gray",
   },
   tile: {
     flexDirection: "row",
