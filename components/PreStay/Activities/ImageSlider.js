@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: "5%",
     textAlign: "center",
     borderRadius: 50,
+    zIndex: 10,
   },
   container: {
     margin: "auto",

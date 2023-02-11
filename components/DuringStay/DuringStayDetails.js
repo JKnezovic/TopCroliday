@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Parse from "parse/react-native.js";
 import ImageSlider from "../PreStay/Activities/ImageSlider";
+import ParseDescription from "./ParseDescription";
 
 const DuringStayDetails = ({ route }) => {
   const { objectId } = route.params;
@@ -53,9 +54,7 @@ const DuringStayDetails = ({ route }) => {
               {" "}
               {activity.get("title")}
             </Text>
-            <Text selectable={true} style={styles.description}>
-              {activity.get("description")}
-            </Text>
+            <ParseDescription description={activity.get("description")} />
           </ScrollView>
         )}
       </View>
@@ -79,12 +78,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     paddingLeft: "5%",
     lineHeight: 84,
-  },
-  description: {
-    color: "#092240",
-    width: "90%",
-    alignSelf: "center",
-    lineHeight: 20,
   },
   loader: {
     flex: 1,

@@ -14,7 +14,6 @@ import Parse from "parse/react-native.js";
 export default function AboutActivity({ route }) {
   const [activity, setActivity] = useState(null);
   const [images, setImages] = useState([]);
-  const [contact, setContact] = useState([]);
 
   useEffect(() => {
     getActivity(route.params.activityId);
@@ -35,10 +34,6 @@ export default function AboutActivity({ route }) {
       });
       setImages(tempImages);
       setActivity(joinedResults[0].get("activityPointer"));
-      if (joinedResults[0].get("activityPointer").get("contact"))
-        setContact(
-          joinedResults[0].get("activityPointer").get("contact").split(":")
-        );
       return true;
     } catch (error) {
       console.log("Error!", error.message);
@@ -53,11 +48,6 @@ export default function AboutActivity({ route }) {
         {activity && (
           <ScrollView style={styles.scrollView}>
             <Text style={styles.title}> {activity.get("Name")}</Text>
-            {activity.get("Note")?.includes("DISCOUNT") && (
-              <Text style={{ width: "90%", alignSelf: "center" }}>
-                When booking this activity be sure to use our:
-              </Text>
-            )}
             <Text
               style={{
                 fontWeight: "bold",
@@ -75,36 +65,6 @@ export default function AboutActivity({ route }) {
             </Text>
 
             <View style={[styles.divider, { backgroundColor: "lightgrey" }]} />
-
-            {activity.get("contact") && (
-              <Text style={[styles.text, { paddingTop: "5%", fontSize: 18 }]}>
-                {"Contact " + contact[0] + ":"}
-              </Text>
-            )}
-
-            {contact[1]?.includes("@") ? (
-              <Text
-                onPress={() => Linking.openURL(`mailto:${contact[1]}`)}
-                selectable={true}
-                style={[
-                  styles.text,
-                  { paddingBottom: 100, fontSize: 18, color: "blue" },
-                ]}
-              >
-                {contact[1]}
-              </Text>
-            ) : (
-              <Text
-                onPress={() => Linking.openURL(`tel:${contact[1]}`)}
-                selectable={true}
-                style={[
-                  styles.text,
-                  { paddingBottom: 100, fontSize: 18, color: "blue" },
-                ]}
-              >
-                {contact[1]}
-              </Text>
-            )}
           </ScrollView>
         )}
       </View>
