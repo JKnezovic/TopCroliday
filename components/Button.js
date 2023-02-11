@@ -1,9 +1,17 @@
-import React from 'react';
-import { Text, View, StyleSheet, Pressable } from 'react-native';
+import React from "react";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 
-export default function Button({onPress, title, style, disabled, small}) {
+export default function Button({ onPress, title, style, disabled, small }) {
   return (
-    <Pressable style={[disabled ? styles.disabledButton : styles.button, small ? styles.smallButton : styles.bigButton,  style]} onPress={onPress} disabled={disabled}>
+    <Pressable
+      style={[
+        disabled ? styles.disabledButton : styles.button,
+        small ? styles.smallButton : styles.bigButton,
+        style,
+      ]}
+      onPress={onPress}
+      disabled={disabled}
+    >
       <Text style={small ? styles.textSmall : styles.text}>{title}</Text>
     </Pressable>
   );
@@ -11,54 +19,52 @@ export default function Button({onPress, title, style, disabled, small}) {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    alignSelf:'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 30,
     elevation: 3,
-    backgroundColor: '#c99a00',
-
+    backgroundColor: "#c99a00",
   },
-  smallButton : {
-    width:"60%",
+  smallButton: {
+    width: "60%",
   },
   bigButton: {
-    width:"80%",
+    width: "80%",
   },
   disabledButton: {
-    alignItems: 'center',
-    alignSelf:'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 30,
     elevation: 3,
-    backgroundColor: 'gray',
+    backgroundColor: "gray",
   },
   text: {
     fontSize: 25,
     lineHeight: 30,
     letterSpacing: 0.25,
-    color: 'white',
+    color: "white",
   },
 
   buttonSmall: {
-    alignItems: 'center',
-    alignSelf:'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 30,
     elevation: 3,
-    backgroundColor: '#c99a00',
-
+    backgroundColor: "#c99a00",
   },
   textSmall: {
     fontSize: 15,
     lineHeight: 20,
     letterSpacing: 0.25,
-    color: 'white',
+    color: "white",
   },
 });

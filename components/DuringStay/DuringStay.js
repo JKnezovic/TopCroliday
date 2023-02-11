@@ -1,123 +1,136 @@
-import React, { useEffect,useState,useRef, useLayoutEffect } from 'react';
-import {Alert, View, StyleSheet, FlatList,ActivityIndicator } from 'react-native';
-import DuringStayTile from './DuringStayTile';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import {
+  Alert,
+  View,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import DuringStayTile from "./DuringStayTile";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native.js";
-import { AntDesign } from '@expo/vector-icons';
-import ReservationContext from '../../ReservationContext';
+import { AntDesign } from "@expo/vector-icons";
+import ReservationContext from "../../ReservationContext";
 
-
-const DuringStay = ({navigation}) => {
-  const [favoriteList,setFavoriteList] = useState({})
-  const [duringStayItems,setDuringStayItems] = useState(null)
-  const [fullData,setFullData] = useState([])
-  const [showFavorites,setShowFavorites] = useState(false)
-  const reservation = React.useContext(ReservationContext)
+const DuringStay = ({ navigation }) => {
+  const [favoriteList, setFavoriteList] = useState({});
+  const [duringStayItems, setDuringStayItems] = useState(null);
+  const [fullData, setFullData] = useState([]);
+  const [showFavorites, setShowFavorites] = useState(false);
+  const reservation = React.useContext(ReservationContext);
   const [isLoading, setIsLoading] = useState(true);
-
 
   const favRef = useRef(null);
   favRef.current = favoriteList;
   const fulldataRef = useRef(null);
   fulldataRef.current = fullData;
 
-  const updateFavoriteList=(id,isFavorite)=>{
-    setFavoriteList(favoriteList=>{return {...favoriteList,[id]:isFavorite}})
-  }
+  const updateFavoriteList = (id, isFavorite) => {
+    setFavoriteList((favoriteList) => {
+      return { ...favoriteList, [id]: isFavorite };
+    });
+  };
 
   const handleFavorite = () => {
-    if(showFavorites){
+    if (showFavorites) {
       setDuringStayItems(fullData);
-    }
-    else{
-      const filteredData =  fulldataRef.current.filter(item => (favRef.current.hasOwnProperty(item.id) && favRef.current[item.id]===true))
+    } else {
+      const filteredData = fulldataRef.current.filter(
+        (item) =>
+          favRef.current.hasOwnProperty(item.id) &&
+          favRef.current[item.id] === true
+      );
       setDuringStayItems(filteredData);
     }
-    setShowFavorites(!showFavorites)
-  }
+    setShowFavorites(!showFavorites);
+  };
 
   const storeFavoriteList = async (list) => {
-    if(list){
-       try {
-      let arrayValue = JSON.stringify(list)
-      await AsyncStorage.setItem('favoriteList', arrayValue)
-    } catch (error) {
-      console.log(error)
+    if (list) {
+      try {
+        let arrayValue = JSON.stringify(list);
+        await AsyncStorage.setItem("favoriteList", arrayValue);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    }
-  }
+  };
 
   const getFavoriteList = async () => {
     try {
-      let arrayValue = await AsyncStorage.getItem('favoriteList')
+      let arrayValue = await AsyncStorage.getItem("favoriteList");
       arrayValue != null ? setFavoriteList(JSON.parse(arrayValue)) : null;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
-  const getActivities = async function() {
-    const parseDuring = new Parse.Query('DuringStay');
+  const getActivities = async function () {
+    const parseDuring = new Parse.Query("DuringStay");
     try {
-      parseDuring.equalTo('locations',reservation.get("location"));
+      parseDuring.equalTo("locations", reservation.get("location"));
       let duringStay = await parseDuring.find();
       setDuringStayItems(duringStay);
       setFullData(duringStay);
-      setIsLoading(false)
-      return true
+      setIsLoading(false);
+      return true;
     } catch (error) {
-      setIsLoading(false)
-      console.log('Error!', error.message);
-      Alert.alert('Error!', "Check your internet connection");
-      return false
-      
+      setIsLoading(false);
+      console.log("Error!", error.message);
+      Alert.alert("Error!", "Check your internet connection");
+      return false;
     }
-
-  }
+  };
 
   useLayoutEffect(() => {
-      navigation.setOptions({
-        headerRight: () => (
-          <AntDesign onPress={()=>handleFavorite()} name={showFavorites?"heart":"hearto"} size={24} color={showFavorites?"#c99a00":"white"} />
-        ),
-      });
-  }, [navigation,showFavorites]);
+    navigation.setOptions({
+      headerRight: () => (
+        <AntDesign
+          onPress={() => handleFavorite()}
+          name={showFavorites ? "heart" : "hearto"}
+          size={24}
+          color={showFavorites ? "#c99a00" : "white"}
+        />
+      ),
+    });
+  }, [navigation, showFavorites]);
 
-  useEffect(()=>{
-    getFavoriteList()
-    getActivities()
+  useEffect(() => {
+    getFavoriteList();
+    getActivities();
 
-    return ()=> storeFavoriteList(favRef.current)
-  },[]);
+    return () => storeFavoriteList(favRef.current);
+  }, []);
 
-
-  if(isLoading){
-    return <ActivityIndicator style={styles.loader} size="large" color="#092240" />
-}
-else{
-
-  return (
-        <View style={styles.container}>
-             <FlatList
-              data={duringStayItems}
-              numColumns={2}
-              columnWrapperStyle={{
-                justifyContent: 'space-between',
-                marginBottom: 15,
-              }}
-              keyExtractor={item => item.id}
-              renderItem={({ item }) => (
-              <DuringStayTile 
-               source={ {uri: item.get('tileImage').url()} } 
-               title={item.get('title')} 
-               objectId={item.id} 
-               updateFavoriteList={updateFavoriteList}
-               favoriteList={favoriteList}
-               showFavorites={showFavorites} />
-              )}
-            /> 
-        </View>
-  );}
+  if (isLoading) {
+    return (
+      <ActivityIndicator style={styles.loader} size="large" color="#092240" />
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={duringStayItems}
+          numColumns={2}
+          columnWrapperStyle={{
+            justifyContent: "space-between",
+            marginBottom: 15,
+          }}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <DuringStayTile
+              source={{ uri: item.get("tileImage").url() }}
+              title={item.get("title")}
+              objectId={item.id}
+              updateFavoriteList={updateFavoriteList}
+              favoriteList={favoriteList}
+              showFavorites={showFavorites}
+            />
+          )}
+        />
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -126,10 +139,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     flex: 1,
   },
-  loader:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center'
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
