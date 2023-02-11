@@ -14,6 +14,9 @@ import ReservationContext from "./ReservationContext";
 import AboutActivity from "./components/PreStay/Activities/AboutActivity";
 import Admin from "./components/Admin/AdminScreen";
 import { StatusBar } from "expo-status-bar";
+import { Pressable } from "react-native";
+import FAQ from "./components/FAQ/FAQ";
+import { Entypo } from "@expo/vector-icons";
 
 Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
@@ -88,12 +91,18 @@ const App = () => {
               <Stack.Screen
                 name="Main"
                 component={MainScreen}
-                options={{
+                options={({ navigation }) => ({
                   title: "Top Croliday",
-                }}
+                  headerRight: () => (
+                    <Pressable onPress={() => navigation.navigate("FAQ")}>
+                      <Entypo name="info-with-circle" size={28} color="white" />
+                    </Pressable>
+                  ),
+                })}
               />
               <Stack.Screen name="PreStay" component={PreStay} />
               <Stack.Screen name="DuringStay" component={DuringStay} />
+              <Stack.Screen name="FAQ" component={FAQ} />
               <Stack.Screen name="AboutActivity" component={AboutActivity} />
               <Stack.Screen
                 name="DuringStayDetails"
