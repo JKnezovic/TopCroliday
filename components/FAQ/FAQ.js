@@ -1,33 +1,52 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Linking,
+  ScrollView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { FAQdata } from "../../assets/data";
+
 const FAQ = () => {
   const [expanded, setExpanded] = useState(null);
-
-  const data = [
-    {
-      question: "What is React Native?",
-      answer:
-        "React Native is a framework for building native mobile apps using React.",
-    },
-    {
-      question: "What is React?",
-      answer: "React is a JavaScript library for building user interfaces.",
-    },
-    {
-      question: "What is a FlatList?",
-      answer:
-        "A FlatList is a component in React Native for rendering a scrolling list of items.",
-    },
-  ];
 
   const handlePress = (index) => {
     setExpanded(index === expanded ? null : index);
   };
 
+  const handleLinkPress = (url) => {
+    Linking.openURL(url);
+  };
+
+  const renderAnswer = (answer) => {
+    const regex = /(https?:\/\/[^\s]+)/g;
+    const answerParts = answer.split(regex);
+
+    const answerElements = answerParts.map((part, index) => {
+      if (part.match(regex)) {
+        return (
+          <Text
+            key={index}
+            style={{ color: "blue", textDecorationLine: "underline" }}
+            onPress={() => handleLinkPress(part)}
+          >
+            {part.includes("app") ? "Promet Split" : part}
+          </Text>
+        );
+      } else {
+        return <Text key={index}>{part}</Text>;
+      }
+    });
+
+    return answerElements;
+  };
+
   return (
-    <View style={styles.container}>
-      {data.map((item, index) => (
+    <ScrollView style={styles.container}>
+      {FAQdata.map((item, index) => (
         <View key={index} style={styles.itemContainer}>
           <TouchableOpacity
             style={styles.iconContainer}
@@ -48,13 +67,11 @@ const FAQ = () => {
               />
             )}
           </TouchableOpacity>
-          {expanded === index && (
-            <Text style={styles.answer}>{item.answer}</Text>
-          )}
+          {expanded === index && renderAnswer(item.answer)}
           <View style={styles.divider} />
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -80,6 +97,7 @@ const styles = StyleSheet.create({
   question: {
     fontWeight: "bold",
     fontSize: 15,
+    maxWidth: "90%",
   },
   answer: {
     marginTop: 8,

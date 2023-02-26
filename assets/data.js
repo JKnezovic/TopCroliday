@@ -51,7 +51,7 @@ export const foodAndDrink = [
     id: 1,
     name: "Basic breakfast",
     description: `Oats (500g) / Chocolate spread (400g) / Marmelade (450g) / Butter (250g) / Eggs (12pcs) / Milk (2L) / Joghurt (1L) + Greek joghurt (450g) / Instant Coffee (8pcs) / Bread (2kg) / Salami + Cheese`,
-    price: "40EUR",
+    price: "50EUR",
     iconName: "free-breakfast",
     iconBank: "MaterialIcons",
   },
@@ -59,7 +59,7 @@ export const foodAndDrink = [
     id: 2,
     name: "Kids breakfast",
     description: `Chocolate cereal (500g) / Pudding (8pcs) / Fruit joghurt (1L)`,
-    price: "15EUR",
+    price: "20EUR",
     iconName: "child",
     iconBank: "FontAwesome",
   },
@@ -67,7 +67,7 @@ export const foodAndDrink = [
     id: 6,
     name: "Juice packages",
     description: `Coca-Cola cans (24x150ml) / Cappy limonade (2x1.25L) / 'Pipi' juice (8x0.5L) / Cedevita juice -powder (200g) / Ice tea – lemon and peach (4x1.5L)`,
-    price: "45EUR",
+    price: "60EUR",
     iconName: "bottle-soda-classic",
     iconBank: "MaterialCommunityIcons",
   },
@@ -75,7 +75,7 @@ export const foodAndDrink = [
     id: 3,
     name: "Beer package",
     description: `40pcs of various croatian craft beer`,
-    price: "100EUR",
+    price: "120EUR",
     iconName: "beer",
     iconBank: "Ionicons",
   },
@@ -108,12 +108,71 @@ export const transferServices = [
   },
 ];
 
+export const FAQdata = [
+  {
+    question: "Public transport?",
+    answer: `
+Here is a link to Promet Split app which containtes all bus lines, and you can buy bus tickets for half the price when using the app:
+
+Google Play: https://play.google.com/store/apps/details?id=hr.prometsplit.mobile&hl=hr&gl=US
+App Store: https://apps.apple.com/hr/app/promet-split/id1609058919
+
+
+      •	Stobreč → Split bus nu. 25
+      •	Strožanac → Split bus nu. 60 and 30
+      •	Omiš → Split bus nu. 60
+      `,
+  },
+  {
+    question: "Ferry lines to different islands from Split?",
+    answer: `
+Here is the link with schedule and tickets:
+      https://www.jadrolinija.hr/en/home
+    `,
+  },
+  {
+    question: "Famous sand beaches in Split and surroundings?",
+    answer: `
+ •	Beach ‘Bačvice’ in Split
+ •	Beach ‘Duće’ in Omiš
+
+Other beautiful beaches are mostly pebble beaches.
+      `,
+  },
+  {
+    question: "A few traditional dalmatian meals worth trying:",
+    answer: `
+ •	Pašticada → braised beef dish cooked in a fragrant sweet and sour sauce
+
+ •	Brudet → traditional dish made from several types of fish and vegetables
+
+ •	Peka → traditional baking bell (made of clay or metal) used when cooking in the open fire and covered with hot coals. It is very versatile: bread, lamb, kid, veal, octopus, chicken, vegetables, big fish like sea
+      `,
+  },
+  {
+    question: "Tipping in Croatia",
+    answer: `
+Tipping is appreciated, but not always expected. If you’re ordering just coffee or a drink, leave the change. For a quick, casual dinner at a konoba, as taverns are called, leave about 3 to 5 % of the bill. For dinner in a nice restaurant, where tips usually are not included, leave about 10%. `,
+  },
+  {
+    question: "Some basic Croatian words",
+    answer: `
+    •	Hvala → Thank you
+    •	Dobar dan → Good day
+    •	Dobra večer → Good evening
+    •	Doviđenja → Good bye
+    •	Bok → Hi / Bye
+    •	Molim → Please
+    `,
+  },
+];
+
 export const infoCleaningServices = `Should you need cleaning services during your stay, we stay at your disposal. The prices for cleaning vary depending on the type of the service.
 
 Please give us a week up front notice.`;
 
 export const infoTransfer = {
-  description: `* You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner:`,
+  description: `* You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner Josip Gale:`,
   phoneNumber: "+385 1234 567",
 };
 
