@@ -33,7 +33,10 @@ export default function FridgeRestockTile({
   };
 
   return (
-    <Pressable style={styles.tile} onPress={() => setModalVisible(true)}>
+    <Pressable
+      style={[styles.tile, { borderLeftColor: color }]}
+      onPress={() => setModalVisible(true)}
+    >
       <FridgeRestockModal
         isVisible={modalVisible}
         title={item.name}
@@ -45,7 +48,7 @@ export default function FridgeRestockTile({
         <Icon
           style={[styles.icon, { color: color }]}
           name={item.iconName}
-          size={50}
+          size={40}
         />
       </View>
 
@@ -72,14 +75,15 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   tile: {
+    borderLeftWidth: 20,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 25,
-    paddingHorizontal: 10,
+    //borderRadius: 25,
+    //paddingHorizontal: 10,
     paddingVertical: 5,
-    marginHorizontal: 5,
-    marginVertical: 2,
+    //marginHorizontal: 5,
+    //marginVertical: 2,
   },
   iconContainer: {
     flex: 2,
@@ -92,6 +96,6 @@ const styles = StyleSheet.create({
   },
   radioView: {
     flex: 1,
-    marginLeft: 5,
+    marginHorizontal: 5,
   },
 });

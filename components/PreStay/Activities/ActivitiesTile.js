@@ -39,8 +39,8 @@ export default ActivitiesTile;
 
 const styles = StyleSheet.create({
   container: {
-    height: 115,
-    width: "48%",
+    height: 100,
+    width: "45%",
     margin: "1%",
   },
   image: {

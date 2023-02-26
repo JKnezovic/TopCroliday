@@ -17,7 +17,12 @@ const Activities = ({
     />
   ));
 
-  return <View style={styles.container}>{items}</View>;
+  return (
+    <View style={{ display: "flex", flexDirection: "row" }}>
+      <View style={{ width: 20, backgroundColor: "#00ac8d" }} />
+      <View style={styles.container}>{items}</View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

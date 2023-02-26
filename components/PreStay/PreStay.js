@@ -7,7 +7,6 @@ import {
   ToastAndroid,
 } from "react-native";
 import PreStayTile from "./PreStayTile";
-import Button from "../Button";
 import {
   prestay,
   foodAndDrink,
@@ -214,12 +213,6 @@ const PreStay = () => {
       />
 
       <ScrollView contentContainerStyle={styles.container}>{items}</ScrollView>
-      <Button
-        style={styles.button}
-        title={"Submit"}
-        disabled={submitDisabled}
-        onPress={() => setModalVisible(true)}
-      />
     </View>
   );
 };
@@ -230,7 +223,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     paddingBottom: "30%",
-    paddingHorizontal: 10,
   },
   button: {
     position: "absolute",

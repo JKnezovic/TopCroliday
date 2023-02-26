@@ -26,10 +26,10 @@ export default function FridgeRestock({
 const styles = StyleSheet.create({
   container: {
     minWidth: "100%",
-    borderBottomEndRadius: 15,
-    borderBottomStartRadius: 15,
-    paddingTop: 2,
-    paddingHorizontal: "1%",
-    paddingBottom: 5,
+    //borderBottomEndRadius: 15,
+    //borderBottomStartRadius: 15,
+    //paddingTop: 1,
+    //paddingHorizontal: "1%",
+    paddingBottom: 1,
   },
 });

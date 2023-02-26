@@ -42,11 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 25,
-    paddingHorizontal: 10,
     paddingVertical: 5,
-    marginHorizontal: 5,
-    marginVertical: 2,
   },
   iconContainer: {
     flex: 2,
@@ -59,9 +55,6 @@ const styles = StyleSheet.create({
   },
   container: {
     minWidth: "100%",
-    borderBottomEndRadius: 15,
-    borderBottomStartRadius: 15,
-    paddingTop: 2,
     paddingHorizontal: "1%",
   },
 });

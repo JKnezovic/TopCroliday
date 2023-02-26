@@ -48,18 +48,6 @@ export default function AboutActivity({ route }) {
         {activity && (
           <ScrollView style={styles.scrollView}>
             <Text style={styles.title}> {activity.get("Name")}</Text>
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 18,
-                width: "90%",
-                alignSelf: "center",
-                paddingBottom: "8%",
-                color: "black",
-              }}
-            >
-              {activity.get("Note")}
-            </Text>
             <Text style={styles.description}>
               {activity.get("description")}
             </Text>

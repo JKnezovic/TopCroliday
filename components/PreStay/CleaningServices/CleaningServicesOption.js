@@ -10,7 +10,7 @@ export default function CleaningServicesOption({
   color,
 }) {
   return (
-    <View style={styles.tile}>
+    <View style={[styles.tile, { borderLeftColor: color }]}>
       <View style={styles.iconContainer}>
         <MaterialIcons
           style={[styles.icon, { color: color }]}
@@ -22,7 +22,7 @@ export default function CleaningServicesOption({
       <Text style={styles.textContainer}>{item.option}</Text>
 
       <RadioButton
-        style={styles.radioButton}
+        style={styles.radioView}
         changeSelection={changeSelection}
         selected={isSelected}
       />
@@ -34,10 +34,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 25,
-    paddingHorizontal: 10,
+    borderLeftWidth: 20,
     paddingVertical: 5,
-    marginHorizontal: 5,
     marginVertical: 2,
   },
   iconContainer: {
@@ -50,7 +48,6 @@ const styles = StyleSheet.create({
     flex: 8,
   },
   radioView: {
-    flex: 1,
-    marginLeft: 5,
+    marginHorizontal: 5,
   },
 });

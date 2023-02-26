@@ -172,7 +172,8 @@ export const infoCleaningServices = `Should you need cleaning services during yo
 Please give us a week up front notice.`;
 
 export const infoTransfer = {
-  description: `* You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner Josip Gale:`,
+  description: `You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner
+Josip Gale:   `,
   phoneNumber: "+385 1234 567",
 };
 
