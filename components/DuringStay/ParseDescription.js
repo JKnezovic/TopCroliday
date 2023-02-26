@@ -1,19 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Linking } from "react-native";
 import OpenMap from "./OpenMap";
 
-const ParseDescription = (props) => {
-  const { description } = props;
-  const [parsedDescription, setParsedDescription] = useState([]);
+const LinkText = ({ locations }) => {
+  if (locations) {
+    const values = locations.split(":");
+    return (
+      <Text
+        style={styles.link}
+        onPress={() =>
+          Linking.openURL(
+            `https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${values[0]}`
+          )
+        }
+      >
+        {values[1]}
+      </Text>
+    );
+  }
+};
 
-  useEffect(() => {
+const ParseDescription = (props) => {
+  const { description, locations } = props;
+  //console.log(locations);
+  //const [parsedDescription, setParsedDescription] = useState([]);
+
+  /* useEffect(() => {
     if (description.includes("LocationStart")) {
       let locations = parseLocations(description);
       setParsedDescription(locations);
     } else setParsedDescription([{ description: description }]);
-  }, [description]);
+  }, [description]); */
 
-  const parseLocations = (str) => {
+  /*  const parseLocations = (str) => {
     const splitStr = str.split("\n");
     let startIndex = -1;
     let locations = [];
@@ -37,17 +56,24 @@ const ParseDescription = (props) => {
     }
 
     return locations;
-  };
+  }; */
 
-  const generateDescription = (location) => {
+  /*   const generateDescription = (location) => {
     let description = "";
     for (let i = 3; i < location.length; i++) {
       description = description + "\n" + location[i];
     }
     return description;
-  };
+  }; */
+  const linkifiedText = description.includes("Location")
+    ? description.split("Location").map((word, index, array) => {
+        return [word, <LinkText key={index} locations={locations[index]} />];
+      })
+    : description;
 
-  return (
+  return <Text style={styles.description}>{linkifiedText}</Text>;
+
+  /* return (
     <View>
       {parsedDescription.map((location, index) => (
         <Text
@@ -61,7 +87,7 @@ const ParseDescription = (props) => {
         </Text>
       ))}
     </View>
-  );
+  );*/
 };
 
 const styles = StyleSheet.create({

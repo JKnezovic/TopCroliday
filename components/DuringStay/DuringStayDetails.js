@@ -54,7 +54,10 @@ const DuringStayDetails = ({ route }) => {
               {" "}
               {activity.get("title")}
             </Text>
-            <ParseDescription description={activity.get("description")} />
+            <ParseDescription
+              description={activity.get("description")}
+              locations={activity.get("mapLinks")}
+            />
           </ScrollView>
         )}
       </View>

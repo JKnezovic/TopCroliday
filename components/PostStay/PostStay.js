@@ -18,7 +18,8 @@ const TopCroliday = () => (
 
 const App = () => (
   <Text style={{ marginRight: "10%", flexShrink: 1, alignSelf: "center" }}>
-    Help us improve this app and your experience using it by leaving a comment:
+    Help us improve this app and your experience using it by leaving a private
+    comment:
   </Text>
 );
 
