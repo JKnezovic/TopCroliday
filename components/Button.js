@@ -1,7 +1,15 @@
 import React from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
-export default function Button({ onPress, title, style, disabled, small }) {
+export default function Button({
+  onPress,
+  title,
+  style,
+  disabled,
+  small,
+  icon = false,
+}) {
   return (
     <Pressable
       style={[
@@ -12,7 +20,12 @@ export default function Button({ onPress, title, style, disabled, small }) {
       onPress={onPress}
       disabled={disabled}
     >
-      <Text style={small ? styles.textSmall : styles.text}>{title}</Text>
+      <View style={{ display: "flex", flexDirection: "row" }}>
+        <Text style={small ? styles.textSmall : styles.text}>
+          {title + "  "}
+        </Text>
+        {icon && <Feather name="check" size={18} color="white" />}
+      </View>
     </Pressable>
   );
 }

@@ -16,6 +16,8 @@ export default function FridgeRestockModal({
   title,
   description,
   price,
+  isSelected,
+  changeSelection,
 }) {
   return (
     <Modal visible={isVisible} animationType={"fade"} transparent={true}>
@@ -33,13 +35,13 @@ export default function FridgeRestockModal({
                   {price}
                 </Text>
               </View>
-
-              <Button
-                small
-                title={"Okay"}
-                onPress={() => setModalVisible(false)}
-              />
             </View>
+            <Button
+              small
+              icon={isSelected}
+              title={"I'm interested "}
+              onPress={() => changeSelection()}
+            />
           </Pressable>
         </View>
       </TouchableWithoutFeedback>
@@ -68,6 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: 20,
   },
   title: {
     fontWeight: "bold",

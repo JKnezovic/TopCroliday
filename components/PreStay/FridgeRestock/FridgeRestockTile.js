@@ -43,6 +43,8 @@ export default function FridgeRestockTile({
         description={item.description}
         price={item.price}
         setModalVisible={setModalVisible}
+        isSelected={isSelected}
+        changeSelection={changeSelection}
       />
       <View style={styles.iconContainer}>
         <Icon
@@ -79,11 +81,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-    //borderRadius: 25,
-    //paddingHorizontal: 10,
     paddingVertical: 5,
-    //marginHorizontal: 5,
-    //marginVertical: 2,
   },
   iconContainer: {
     flex: 2,

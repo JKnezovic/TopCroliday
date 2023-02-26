@@ -27,20 +27,20 @@ const PreStay = () => {
   const [selectedTransfer, setSelectedTransfer] = useState({});
   const [selectedCleaningServices, setSelectedCleaningServices] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
-  const [submitDisabled, setSubmitDisabled] = useState(false);
+  const [populateCompleted, setPopulateCompleted] = useState(false);
 
   const reservation = useContext(ReservationContext);
   const accommodationType = reservation.get("accommodation").get("Type");
 
   useEffect(() => {
     populatePrestay(prestay);
-    populateSelection(reservation);
+    updateAllStates();
 
     //get activities
     getActivities();
   }, []);
   useEffect(() => {
-    isSubmitDisabled();
+    if (populateCompleted) updateReservation(reservation);
   }, [
     selectedActivities,
     selectedCleaningServices,
@@ -57,6 +57,11 @@ const PreStay = () => {
       Alert.alert("Error!", "Check your internet connection");
       return false;
     }
+  };
+
+  const updateAllStates = async () => {
+    await Promise.all([populateSelection(reservation)]);
+    setPopulateCompleted(true);
   };
 
   const populateSelection = (reservation) => {
@@ -130,47 +135,13 @@ const PreStay = () => {
     let Reservation = new Parse.Object("Reservation");
     Reservation.set("objectId", reservation.id);
     let choices = createChoices();
+    choices.fridgeRestock.forEach((x) => console.log(x.id));
+    console.log("-------------");
     Reservation.set("choices", choices);
     try {
       await Reservation.save();
     } catch (error) {
       Alert.alert("Error!", error.message);
-    }
-  };
-  const isSubmitDisabled = () => {
-    if (
-      !selectedActivities.length &&
-      !selectedCleaningServices &&
-      !selectedFridgeRestock &&
-      !selectedTransfer
-    )
-      setSubmitDisabled(true);
-    else {
-      for (key in selectedActivities) {
-        if (selectedActivities[key] === true) {
-          setSubmitDisabled(false);
-          return 0;
-        }
-      }
-      for (key in selectedCleaningServices) {
-        if (selectedCleaningServices[key] === true) {
-          setSubmitDisabled(false);
-          return 0;
-        }
-      }
-      for (key in selectedFridgeRestock) {
-        if (selectedFridgeRestock[key] === true) {
-          setSubmitDisabled(false);
-          return 0;
-        }
-      }
-      for (key in selectedTransfer) {
-        if (selectedTransfer[key] === true) {
-          setSubmitDisabled(false);
-          return 0;
-        }
-      }
-      setSubmitDisabled(true);
     }
   };
 
