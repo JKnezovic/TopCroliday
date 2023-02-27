@@ -10,7 +10,10 @@ const ActivitiesTile = ({ item, changeSelection, isSelected }) => {
     <Pressable
       style={styles.container}
       onPress={() =>
-        navigation.navigate("AboutActivity", { activityId: item.id })
+        navigation.navigate("AboutActivity", {
+          activityId: item.id,
+          isSelected: isSelected,
+        })
       }
     >
       <ImageBackground

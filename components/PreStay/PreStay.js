@@ -47,6 +47,11 @@ const PreStay = () => {
     selectedFridgeRestock,
     selectedTransfer,
   ]);
+
+  useEffect(() => {
+    populateSelection(reservation);
+  }, [reservation]);
+
   const getActivities = async () => {
     let activitiesQuery = new Parse.Query("Activities");
     try {
@@ -135,8 +140,6 @@ const PreStay = () => {
     let Reservation = new Parse.Object("Reservation");
     Reservation.set("objectId", reservation.id);
     let choices = createChoices();
-    choices.fridgeRestock.forEach((x) => console.log(x.id));
-    console.log("-------------");
     Reservation.set("choices", choices);
     try {
       await Reservation.save();

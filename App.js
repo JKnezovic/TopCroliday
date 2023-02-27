@@ -66,6 +66,10 @@ const App = () => {
     getReservation();
   }, []);
 
+  React.useEffect(() => {
+    console.log("hej hoj");
+  }, [reservation]);
+
   return (
     <ReservationContext.Provider value={reservation}>
       <StatusBar style="light" />
@@ -103,7 +107,9 @@ const App = () => {
               <Stack.Screen name="PreStay" component={PreStay} />
               <Stack.Screen name="DuringStay" component={DuringStay} />
               <Stack.Screen name="FAQ" component={FAQ} />
-              <Stack.Screen name="AboutActivity" component={AboutActivity} />
+              <Stack.Screen name="AboutActivity">
+                {() => <AboutActivity setReservation={setReservation} />}
+              </Stack.Screen>
               <Stack.Screen
                 name="DuringStayDetails"
                 component={DuringStayDetails}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Alert,
   View,
@@ -6,18 +6,59 @@ import {
   Text,
   ScrollView,
   ActivityIndicator,
-  Linking,
 } from "react-native";
 import ImageSlider from "./ImageSlider";
 import Parse from "parse/react-native.js";
+import Button from "../../Button";
+import ReservationContext from "../../../ReservationContext";
+import { useNavigationState } from "@react-navigation/native";
 
-export default function AboutActivity({ route }) {
+export default function AboutActivity({ setReservation }) {
+  const reservation = useContext(ReservationContext);
+
   const [activity, setActivity] = useState(null);
   const [images, setImages] = useState([]);
+  const [isSelected, setIsSelected] = useState(false);
 
+  const state = useNavigationState((state) => state);
   useEffect(() => {
-    getActivity(route.params.activityId);
-  }, []);
+    if (state) {
+      let route = state.routes.find((x) => x.name === "AboutActivity");
+      getActivity(route.params.activityId);
+      if (route.params.isSelected) setIsSelected(route.params.isSelected);
+      else setIsSelected(false);
+    }
+  }, [state]);
+
+  const updateReservation = async function () {
+    setIsSelected(!isSelected);
+    let Reservation = new Parse.Object("Reservation");
+    Reservation.set("objectId", reservation.id);
+    let choices = reservation.get("choices");
+    addOrRemoveObjectFromArray(choices.activities, {
+      id: activity.id,
+      name: activity.get("Name"),
+    });
+    Reservation.set("choices", choices);
+    try {
+      let reservation = await Reservation.save();
+      setReservation(reservation);
+    } catch (error) {
+      Alert.alert("Error!", error.message);
+    }
+  };
+
+  function addOrRemoveObjectFromArray(arr, obj) {
+    const index = arr.findIndex((item) => item.id === obj.id);
+    if (index === -1) {
+      // Object doesn't exist in array, add it
+      arr.push(obj);
+    } else {
+      // Object already exists in array, remove it
+      arr.splice(index, 1);
+    }
+  }
+
   const getActivity = async (activityId) => {
     const activityQuery = new Parse.Query("Activities");
     activityQuery.equalTo("objectId", activityId);
@@ -46,14 +87,21 @@ export default function AboutActivity({ route }) {
       <View style={styles.container}>
         <ImageSlider images={images} />
         {activity && (
-          <ScrollView style={styles.scrollView}>
-            <Text style={styles.title}> {activity.get("Name")}</Text>
-            <Text style={styles.description}>
-              {activity.get("description")}
-            </Text>
-
-            <View style={[styles.divider, { backgroundColor: "lightgrey" }]} />
-          </ScrollView>
+          <>
+            <ScrollView style={styles.scrollView}>
+              <Text style={styles.title}> {activity.get("Name")}</Text>
+              <Text style={styles.description}>
+                {activity.get("description")}
+              </Text>
+            </ScrollView>
+            <Button
+              style={{ position: "absolute", bottom: 30 }}
+              small
+              icon={isSelected}
+              title={"I'm interested "}
+              onPress={() => updateReservation()}
+            />
+          </>
         )}
       </View>
     );
@@ -86,6 +134,7 @@ const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     lineHeight: 20,
+    paddingBottom: 100,
   },
   text: {
     width: "90%",
