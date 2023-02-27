@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { cleaningServices, infoCleaningServices } from "../../../assets/data";
 import CleaningServicesOption from "./CleaningServicesOption";
-import { FontAwesome } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 export default function CleaningServices({
   changeSelection,
@@ -22,16 +22,16 @@ export default function CleaningServices({
   return (
     <View style={styles.container}>
       {items}
-      <View style={styles.tile}>
+      <View style={[styles.tile, { borderLeftColor: color }]}>
         <View style={styles.iconContainer}>
-          <FontAwesome
-            style={[styles.icon, { color: color }]}
+          <Entypo
+            style={[styles.icon, { color: "#c99a00" }]}
             name={"info"}
-            size={40}
+            size={30}
           />
         </View>
 
-        <Text style={styles.text}> {infoCleaningServices}</Text>
+        <Text style={styles.text}>{infoCleaningServices}</Text>
       </View>
     </View>
   );
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     paddingVertical: 5,
+    borderLeftWidth: 20,
   },
   iconContainer: {
     flex: 2,
@@ -52,9 +53,11 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 9,
+    paddingRight: 20,
+    fontSize: 13,
+    fontStyle: "italic",
   },
   container: {
     minWidth: "100%",
-    paddingHorizontal: "1%",
   },
 });

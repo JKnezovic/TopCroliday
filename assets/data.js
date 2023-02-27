@@ -112,7 +112,7 @@ export const FAQdata = [
   {
     question: "Public transport?",
     answer: `
-Here is a link to Promet Split app which containtes all bus lines, and you can buy bus tickets for half the price when using the app:
+Here is a link to Promet Split app which containes all bus lines, and you can buy bus tickets for half the price when using the app:
 
 Google Play: https://play.google.com/store/apps/details?id=hr.prometsplit.mobile&hl=hr&gl=US
 App Store: https://apps.apple.com/hr/app/promet-split/id1609058919
@@ -168,8 +168,9 @@ Tipping is appreciated, but not always expected. If you’re ordering just coffe
 ];
 
 export const infoCleaningServices = `Should you need cleaning services during your stay, we stay at your disposal. The prices for cleaning vary depending on the type of the service.
-
 Please give us a week up front notice.`;
+
+export const infoFridgeAndRestock = `Should you like to take one of the options in this category, please request it ONE week before your arrival!`;
 
 export const infoTransfer = {
   description: `You need transfer/ taxi services during your stay? We give you the phone number of our trusted taxi partner

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderLeftWidth: 20,
     paddingVertical: 5,
-    marginVertical: 2,
+    //marginVertical: 2,
   },
   iconContainer: {
     flex: 2,

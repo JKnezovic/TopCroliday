@@ -66,10 +66,6 @@ const App = () => {
     getReservation();
   }, []);
 
-  React.useEffect(() => {
-    console.log("hej hoj");
-  }, [reservation]);
-
   return (
     <ReservationContext.Provider value={reservation}>
       <StatusBar style="light" />
