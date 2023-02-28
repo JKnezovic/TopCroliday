@@ -18,7 +18,9 @@ export default function TransferServices({ color }) {
           <Text style={{ fontStyle: "italic" }}>
             {infoTransfer.description}
             <Text
-              onPress={() => Linking.openURL(`tel:${infoTransfer.phoneNumber}`)}
+              onPress={() =>
+                Linking.openURL(`tel://${infoTransfer.phoneNumber}`)
+              }
               style={styles.phoneNumber}
             >
               {infoTransfer.phoneNumber}

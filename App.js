@@ -17,12 +17,10 @@ import { StatusBar } from "expo-status-bar";
 import { Pressable } from "react-native";
 import FAQ from "./components/FAQ/FAQ";
 import { Entypo } from "@expo/vector-icons";
+import { APPLICATION_ID, JAVASCRIPT_KEY } from "./auth_keys";
 
 Parse.setAsyncStorage(AsyncStorage);
-Parse.initialize(
-  "F4H5ofBLuLAIxCkwAE2E2oS2Hn1b5kppANz13hd0",
-  "tZrBhwOCMFkTbg1WJcWzgjVgoJ38sK5Xb0QjpywB"
-);
+Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 const style = {

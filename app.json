@@ -2,14 +2,14 @@
   "expo": {
     "name": "TopCroliday",
     "slug": "TopCroliday",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "primaryColor": "#092240",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#092240"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.eondevelopers.topcroliday"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,7 +27,7 @@
         "backgroundColor": "#092240"
       },
       "permissions":[],
-      "versionCode":5,
+      "versionCode":6,
       "package":"com.eondevelopers.topcroliday"
     },
     "web": {

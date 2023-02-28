@@ -22,7 +22,12 @@ export default function RadioButton(props) {
         <Feather
           style={[
             props.style,
-            { backgroundColor: "#fff", opacity: 0.8, borderRadius: 12 },
+            {
+              backgroundColor: "#fff",
+              opacity: 0.8,
+              borderRadius: 12,
+              overflow: "hidden",
+            },
           ]}
           name="check-circle"
           size={25}
