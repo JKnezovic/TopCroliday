@@ -26,12 +26,17 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#092240"
       },
-      "permissions":[],
-      "versionCode":6,
-      "package":"com.eondevelopers.topcroliday"
+      "permissions": [],
+      "versionCode": 6,
+      "package": "com.eondevelopers.topcroliday"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9658df35-57c7-41b8-822b-f5074b807eab"
+      }
     }
   }
 }
