@@ -19,8 +19,8 @@ const ReservationTile = ({
         message: `Hi!
         Thank you for booking with us. As our guest, we send you a link of our Top Croliday App.
         The App helps you in designing your perfect holiday by providing you with information and services before, during and after your stay.
-        In the app you will get a discount code for various 5-star activities selected by us.
-        LINK: https://play.google.com/store/apps/details?id=com.eondevelopers.topcroliday
+        Android: https://play.google.com/store/apps/details?id=com.eondevelopers.topcroliday
+        IOS: https://apps.apple.com/us/app/topcroliday/id6446034019
         USERNAME: ${username}
         PASSWORD: ${password}
         `,
